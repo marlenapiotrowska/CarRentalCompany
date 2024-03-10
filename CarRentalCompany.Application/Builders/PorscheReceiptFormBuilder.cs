@@ -4,26 +4,30 @@ using System.Text;
 
 namespace CarRentalCompany.Application.Builders
 {
-    public class TypicalReceiptFormBuilder : IReceiptFormBuilder
+    public class PorscheReceiptFormBuilder : IReceiptFormBuilder
     {
-        private readonly CarReceiptForm _receiptFormType;
         private readonly StringBuilder _stringBuilder;
         private readonly ReceiptFormBuilder _baseBuilder;
+        private readonly PorscheReceiptForm _receiptFormType;
 
         public bool IsReceiptFormType(ICarReceiptForm receiptForm)
-            => receiptForm.GetType() == typeof(CarReceiptForm);
+            => receiptForm.GetType() == typeof(PorscheReceiptForm);
 
-        public TypicalReceiptFormBuilder()
+        public PorscheReceiptFormBuilder()
         {
-            _receiptFormType = new CarReceiptForm();
-            _stringBuilder = new StringBuilder();
+            _stringBuilder = new StringBuilder(); 
             _baseBuilder = new ReceiptFormBuilder();
+            _receiptFormType = new PorscheReceiptForm();
         }
 
         public IReceiptFormBuilder CreateEmpty()
         {
-            _stringBuilder.AppendLine("RECEIPT FORM");
+            _stringBuilder.AppendLine("PORSCHE RECEIPT FORM");
             _stringBuilder.Append(_baseBuilder.GetDefaultReceiptForm());
+            _stringBuilder.AppendLine($"Cars paint condition: {Condition.Bad} / {Condition.Good.State} / {Condition.WithComments.State}: ");
+            _stringBuilder.AppendLine();
+            _stringBuilder.AppendLine($"Porsche sign condition: {Condition.Bad} / {Condition.Good} / {Condition.WithComments}: ");
+            _stringBuilder.AppendLine();
 
             return this;
         }
@@ -66,7 +70,9 @@ namespace CarRentalCompany.Application.Builders
 
         public ICarReceiptForm GetResult()
         {
-            var path = @"D:\4 - Maja sie uczy\4 - My apps\CarRentalCompanyFiles\ReceiptForm.txt";
+            var fileName = "ReceiptForm";
+            var path = $@"D:\4 - Maja sie uczy\4 - My apps\CarRentalCompanyFiles\{fileName}.txt";
+
             File.WriteAllText(path, _stringBuilder.ToString());
 
             _receiptFormType.Payload = _stringBuilder.ToString();

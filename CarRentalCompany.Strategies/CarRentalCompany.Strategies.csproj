@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+    <ProjectReference Include="..\CarRentalCompany.Application\CarRentalCompany.Application.csproj" />
+    <ProjectReference Include="..\CarRentalCompany.Domain\CarRentalCompany.Domain.csproj" />
   </ItemGroup>
 
 </Project>

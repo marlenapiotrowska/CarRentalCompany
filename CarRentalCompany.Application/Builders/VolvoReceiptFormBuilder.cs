@@ -4,26 +4,27 @@ using System.Text;
 
 namespace CarRentalCompany.Application.Builders
 {
-    public class TypicalReceiptFormBuilder : IReceiptFormBuilder
+    public class VolvoReceiptFormBuilder : IReceiptFormBuilder
     {
-        private readonly CarReceiptForm _receiptFormType;
+        private readonly VolvoReceiptForm _receiptFormType;
         private readonly StringBuilder _stringBuilder;
         private readonly ReceiptFormBuilder _baseBuilder;
 
         public bool IsReceiptFormType(ICarReceiptForm receiptForm)
-            => receiptForm.GetType() == typeof(CarReceiptForm);
+            => receiptForm.GetType() == typeof(VolvoReceiptForm);
 
-        public TypicalReceiptFormBuilder()
+        public VolvoReceiptFormBuilder()
         {
-            _receiptFormType = new CarReceiptForm();
+            _receiptFormType = new VolvoReceiptForm();
             _stringBuilder = new StringBuilder();
             _baseBuilder = new ReceiptFormBuilder();
         }
 
         public IReceiptFormBuilder CreateEmpty()
         {
-            _stringBuilder.AppendLine("RECEIPT FORM");
+            _stringBuilder.AppendLine("VOLVO RECEIPT FORM");
             _stringBuilder.Append(_baseBuilder.GetDefaultReceiptForm());
+            _stringBuilder.AppendLine($"SteeringWheel washed manually: YES / NO");
 
             return this;
         }

@@ -4,26 +4,30 @@ using System.Text;
 
 namespace CarRentalCompany.Application.Builders
 {
-    public class TypicalReceiptFormBuilder : IReceiptFormBuilder
+    public class MercedesReceiptFormBuilder : IReceiptFormBuilder
     {
-        private readonly CarReceiptForm _receiptFormType;
+        private readonly MercedesReceiptForm _receiptFormType;
         private readonly StringBuilder _stringBuilder;
         private readonly ReceiptFormBuilder _baseBuilder;
 
         public bool IsReceiptFormType(ICarReceiptForm receiptForm)
-            => receiptForm.GetType() == typeof(CarReceiptForm);
+            => receiptForm.GetType() == typeof(MercedesReceiptForm);
 
-        public TypicalReceiptFormBuilder()
+        public MercedesReceiptFormBuilder()
         {
-            _receiptFormType = new CarReceiptForm();
+            _receiptFormType = new MercedesReceiptForm();
             _stringBuilder = new StringBuilder();
             _baseBuilder = new ReceiptFormBuilder();
         }
 
         public IReceiptFormBuilder CreateEmpty()
         {
-            _stringBuilder.AppendLine("RECEIPT FORM");
+            _stringBuilder.AppendLine("MERCEDES RECEIPT FORM");
             _stringBuilder.Append(_baseBuilder.GetDefaultReceiptForm());
+            _stringBuilder.AppendLine($"Parking sensor condition: {Condition.Bad.State} / {Condition.Good} / {Condition.WithComments}: ");
+            _stringBuilder.AppendLine();
+            _stringBuilder.AppendLine($"Wheel alignment: {Condition.Bad} / {Condition.Good} / {Condition.WithComments}: ");
+            _stringBuilder.AppendLine();
 
             return this;
         }
@@ -66,7 +70,15 @@ namespace CarRentalCompany.Application.Builders
 
         public ICarReceiptForm GetResult()
         {
-            var path = @"D:\4 - Maja sie uczy\4 - My apps\CarRentalCompanyFiles\ReceiptForm.txt";
+            var counter = 0;
+            var fileName = "ReceiptForm";
+            var path = $@"D:\4 - Maja sie uczy\4 - My apps\CarRentalCompanyFiles\{fileName}.txt";
+
+            while (File.Exists(path))
+            {
+                counter ++;
+                _ = fileName + counter.ToString();
+            }
             File.WriteAllText(path, _stringBuilder.ToString());
 
             _receiptFormType.Payload = _stringBuilder.ToString();

@@ -1,4 +1,7 @@
-﻿namespace CarRentalCompany.Domain.Exceptions
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+namespace CarRentalCompany.Domain.Exceptions
 {
     internal class InvalidTirePressureException : Exception
     {
