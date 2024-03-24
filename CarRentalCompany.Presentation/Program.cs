@@ -1,9 +1,9 @@
-﻿using CarRentalCompany.Application;
-using CarRentalCompany.Application.Builders;
+﻿using CarRentalCompany.Application.Builders;
 using CarRentalCompany.Infrastructure;
+using CarRentalCompany.Presentation.Services;
 using CarRentalCompany.Strategies;
+using CarRentalCompany.Strategies.CarBrands;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -18,17 +18,24 @@ namespace CarRentalCompany.Presentation
             {
                 services.AddDbContext<CarRentalCompanyDbContext>(options
                    => options.UseSqlServer("Server=.\\sqlexpress;Database=CarRentalCompany;Trusted_Connection=Yes;MultipleActiveResultSets=True;TrustServerCertificate=true"));
-                services.AddApplication();
-                services.AddTransient<ReceiptFormStrategy>();
+                services.AddSingleton<IReceiptFormBuilder, TypicalReceiptFormBuilder>();
+                services.AddSingleton<IReceiptFormBuilder, PorscheReceiptFormBuilder>();
+                services.AddSingleton<IReceiptFormBuilder, MercedesReceiptFormBuilder>();
+                services.AddSingleton<IReceiptFormBuilder, VolvoReceiptFormBuilder>();
+                services.AddSingleton<ICarReceiptForm, CarReceiptForm>();
+                services.AddSingleton<ICarReceiptForm, MercedesReceiptForm>();
+                services.AddSingleton<ICarReceiptForm, PorscheReceiptForm>();
+                services.AddSingleton<ICarReceiptForm, VolvoReceiptForm>();
+                services.AddTransient<IReceiptFormStrategy, ReceiptFormStrategy>();
             });
 
             var app = host.Build();
 
-            var builders = app.Services.GetServices<IReceiptFormBuilder>();
-            var strategy = new ReceiptFormStrategy(builders);
-            var builder = strategy.ResolveReceiptForm("Porsche");
-            builder.CreateEmpty();
-            builder.GetResult();
+            var strategy = app.Services.GetService<IReceiptFormStrategy>();
+            var careReceiptForms = app.Services.GetServices<ICarReceiptForm>();
+            var menu = new MenuService(careReceiptForms, strategy);
+
+            menu.Render();
         }
     }
 }
