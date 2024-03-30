@@ -27,7 +27,9 @@ namespace CarRentalCompany.Presentation.Services
                 try
                 {
                     CreateMenu();
-                    var builder = GetBuilder();
+                    var pressedKey = Console.ReadKey();
+                    reportWasSaved = ValidatePressedKey();
+                    var builder = GetBuilder(pressedKey.KeyChar);
                     builder.CreateEmpty();
                     builder.GetResult();
                     Console.WriteLine("\nRaport wygenerowano");
@@ -41,6 +43,16 @@ namespace CarRentalCompany.Presentation.Services
             }
         }
 
+        private static bool ValidatePressedKey()
+        {
+            if (Console.ReadKey().Key == ConsoleKey.Escape)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         private void CreateMenu()
         {
             Console.WriteLine("-------Welcome in Incredible Maja's Car Rental-------" +
@@ -50,11 +62,12 @@ namespace CarRentalCompany.Presentation.Services
             {
                 Console.WriteLine($"{element.First().Key}) {element.First().Value}");
             }
+
+            Console.WriteLine("ESC) To quit");
         }
 
-        private IReceiptFormBuilder GetBuilder()
+        private IReceiptFormBuilder GetBuilder(char pressedKey)
         {
-            var pressedKey = Console.ReadKey().KeyChar;
             var numericValue = Convert.ToInt32(pressedKey.ToString());
             return _strategy.ResolveReceiptForm(numericValue);
         }
