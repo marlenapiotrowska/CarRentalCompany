@@ -1,4 +1,5 @@
-﻿using CarRentalCompany.Domain.AdditionalTypes;
+﻿using CarRentalCompany.Application.Repositories;
+using CarRentalCompany.Domain.AdditionalTypes;
 using CarRentalCompany.Strategies.CarBrands;
 using System.Text;
 
@@ -13,10 +14,10 @@ namespace CarRentalCompany.Application.Builders
         public bool IsReceiptFormType(ICarReceiptForm receiptForm)
             => receiptForm.GetType() == typeof(PorscheReceiptForm);
 
-        public PorscheReceiptFormBuilder()
+        public PorscheReceiptFormBuilder(IReceiptFormRepository repository)
         {
             _stringBuilder = new StringBuilder(); 
-            _baseBuilder = new ReceiptFormBuilder();
+            _baseBuilder = new ReceiptFormBuilder(repository);
             _receiptFormType = new PorscheReceiptForm();
         }
 

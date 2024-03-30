@@ -19,4 +19,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CarRentalCompany.Application\CarRentalCompany.Application.csproj" />
+    <ProjectReference Include="..\CarRentalCompany.Domain\CarRentalCompany.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

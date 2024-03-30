@@ -1,4 +1,4 @@
-﻿using CarRentalCompany.Domain.CarBrands;
+﻿using CarRentalCompany.Application.Repositories;
 using CarRentalCompany.Strategies.CarBrands;
 using System.Text;
 
@@ -7,10 +7,12 @@ namespace CarRentalCompany.Application.Builders
     internal class ReceiptFormBuilder
     {
         private readonly StringBuilder _stringBuilder;
+        private readonly IReceiptFormRepository _repository;
 
-        public ReceiptFormBuilder()
+        public ReceiptFormBuilder(IReceiptFormRepository repository)
         {
             _stringBuilder = new StringBuilder();
+            _repository = repository;
         }
 
         public string GetDefaultReceiptForm()
@@ -29,6 +31,11 @@ namespace CarRentalCompany.Application.Builders
         {
             var path = @"D:\4 - Maja sie uczy\4 - My apps\CarRentalCompanyFiles\ReceiptForm.txt";
             File.WriteAllText(path, builder.ToString());
+        }
+
+        public void AddReceiptForm(ICarReceiptForm receiptForm, Guid clientId)
+        {
+            _repository.Add(receiptForm, clientId);
         }
     }
 }
