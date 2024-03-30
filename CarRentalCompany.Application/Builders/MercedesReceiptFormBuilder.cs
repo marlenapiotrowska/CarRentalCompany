@@ -70,16 +70,7 @@ namespace CarRentalCompany.Application.Builders
 
         public ICarReceiptForm GetResult()
         {
-            var counter = 0;
-            var fileName = "ReceiptForm";
-            var path = $@"D:\4 - Maja sie uczy\4 - My apps\CarRentalCompanyFiles\{fileName}.txt";
-
-            while (!File.Exists(path))
-            {
-                counter ++;
-                _ = fileName + counter.ToString();
-            }
-            File.WriteAllText(path, _stringBuilder.ToString());
+            _baseBuilder.SaveFile(_stringBuilder);
 
             _receiptFormType.Payload = _stringBuilder.ToString();
             return _receiptFormType;

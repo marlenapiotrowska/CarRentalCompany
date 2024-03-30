@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using CarRentalCompany.Domain.CarBrands;
+using CarRentalCompany.Strategies.CarBrands;
+using System.Text;
 
 namespace CarRentalCompany.Application.Builders
 {
@@ -21,6 +23,12 @@ namespace CarRentalCompany.Application.Builders
             _stringBuilder.AppendLine("Washed: ");
 
             return _stringBuilder.ToString();
+        }
+
+        public void SaveFile(StringBuilder builder)
+        {
+            var path = @"D:\4 - Maja sie uczy\4 - My apps\CarRentalCompanyFiles\ReceiptForm.txt";
+            File.WriteAllText(path, builder.ToString());
         }
     }
 }
