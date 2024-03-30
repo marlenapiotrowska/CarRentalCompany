@@ -1,11 +1,12 @@
 ﻿using CarRentalCompany.Domain.AdditionalTypes;
+using CarRentalCompany.Domain.CarBrands;
 
 namespace CarRentalCompany.Strategies.CarBrands
 {
     public class CarReceiptForm : ICarReceiptForm
     {
         public Dictionary<int, string> Type
-            => GetType();
+            => ReceiptFormTypes.Create(1);
         public string Payload { get; set; }
         public int TirePressure { get; set; }
         public FuelLevel FuelLevel { get; set; }
@@ -13,13 +14,5 @@ namespace CarRentalCompany.Strategies.CarBrands
         public bool SystemUpdated { get; set; }
         public bool Refuled { get; set; }
         public bool Washed { get; set; }
-
-        private Dictionary<int, string> GetType()
-        {
-            return new Dictionary<int, string>
-            {
-                { 1, "Typical" }
-            };
-        }
     }
 }

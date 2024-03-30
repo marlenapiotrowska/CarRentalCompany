@@ -74,7 +74,7 @@ namespace CarRentalCompany.Application.Builders
             var fileName = "ReceiptForm";
             var path = $@"D:\4 - Maja sie uczy\4 - My apps\CarRentalCompanyFiles\{fileName}.txt";
 
-            while (File.Exists(path))
+            while (!File.Exists(path))
             {
                 counter ++;
                 _ = fileName + counter.ToString();
