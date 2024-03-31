@@ -1,6 +1,6 @@
 ﻿using CarRentalCompany.Application.Repositories;
+using CarRentalCompany.Domain.Models.CarBrands;
 using CarRentalCompany.Infrastructure.Entities;
-using CarRentalCompany.Strategies.CarBrands;
 
 namespace CarRentalCompany.Infrastructure.Repositories
 {

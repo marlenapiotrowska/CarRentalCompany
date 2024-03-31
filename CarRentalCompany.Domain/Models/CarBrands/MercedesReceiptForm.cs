@@ -1,7 +1,6 @@
 ﻿using CarRentalCompany.Domain.AdditionalTypes;
-using CarRentalCompany.Domain.CarBrands;
 
-namespace CarRentalCompany.Strategies.CarBrands
+namespace CarRentalCompany.Domain.Models.CarBrands
 {
     public class MercedesReceiptForm : ICarReceiptForm
     {

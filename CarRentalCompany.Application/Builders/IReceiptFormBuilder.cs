@@ -1,5 +1,5 @@
 ﻿using CarRentalCompany.Domain.AdditionalTypes;
-using CarRentalCompany.Strategies.CarBrands;
+using CarRentalCompany.Domain.Models.CarBrands;
 
 namespace CarRentalCompany.Application.Builders
 {
@@ -13,6 +13,6 @@ namespace CarRentalCompany.Application.Builders
         IReceiptFormBuilder SetIfSystemUpdated(bool isSystemUpdated);
         IReceiptFormBuilder SetIfRefuled(bool isRefuled);
         IReceiptFormBuilder SetIfWashed(bool isWashed);
-        ICarReceiptForm GetResult();
+        ICarReceiptForm SaveResult();
     }
 }

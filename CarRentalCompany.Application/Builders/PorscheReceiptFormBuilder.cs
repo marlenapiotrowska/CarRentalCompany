@@ -1,6 +1,6 @@
 ﻿using CarRentalCompany.Application.Repositories;
 using CarRentalCompany.Domain.AdditionalTypes;
-using CarRentalCompany.Strategies.CarBrands;
+using CarRentalCompany.Domain.Models.CarBrands;
 using System.Text;
 
 namespace CarRentalCompany.Application.Builders
@@ -69,7 +69,7 @@ namespace CarRentalCompany.Application.Builders
             return this;
         }
 
-        public ICarReceiptForm GetResult()
+        public ICarReceiptForm SaveResult()
         {
             _baseBuilder.SaveFile(_stringBuilder);
 

@@ -1,12 +1,11 @@
 ﻿using CarRentalCompany.Domain.AdditionalTypes;
-using CarRentalCompany.Domain.CarBrands;
 
-namespace CarRentalCompany.Strategies.CarBrands
+namespace CarRentalCompany.Domain.Models.CarBrands
 {
-    public class VolvoReceiptForm : ICarReceiptForm
+    public class CarReceiptForm : ICarReceiptForm
     {
         public Dictionary<int, string> Type
-            => ReceiptFormTypes.Create(4);
+            => ReceiptFormTypes.Create(1);
         public string Payload { get; set; }
         public int TirePressure { get; set; }
         public FuelLevel FuelLevel { get; set; }
@@ -14,6 +13,5 @@ namespace CarRentalCompany.Strategies.CarBrands
         public bool SystemUpdated { get; set; }
         public bool Refuled { get; set; }
         public bool Washed { get; set; }
-        public bool SteeringWheelWashedManually { get; set; }
     }
 }

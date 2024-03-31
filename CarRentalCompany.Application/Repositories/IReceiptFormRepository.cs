@@ -1,4 +1,4 @@
-﻿using CarRentalCompany.Strategies.CarBrands;
+﻿using CarRentalCompany.Domain.Models.CarBrands;
 
 namespace CarRentalCompany.Application.Repositories
 {

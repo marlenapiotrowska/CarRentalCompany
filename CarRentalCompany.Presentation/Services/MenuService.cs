@@ -1,6 +1,7 @@
 ﻿using CarRentalCompany.Application.Builders;
+using CarRentalCompany.Application.Services;
+using CarRentalCompany.Domain.Models.CarBrands;
 using CarRentalCompany.Strategies;
-using CarRentalCompany.Strategies.CarBrands;
 
 namespace CarRentalCompany.Presentation.Services
 {
@@ -8,12 +9,16 @@ namespace CarRentalCompany.Presentation.Services
     {
         private readonly IEnumerable<ICarReceiptForm> _carReceiptForms;
         private readonly IReceiptFormStrategy _strategy;
+        private readonly IReceiptFormService _receiptFormService;
+        private readonly IClientService _clientService;
         private readonly IEnumerable<Dictionary<int, string>> _formTypes;
 
-        public MenuService(IEnumerable<ICarReceiptForm> carReceiptForms, IReceiptFormStrategy strategy)
+        public MenuService(IEnumerable<ICarReceiptForm> carReceiptForms, IReceiptFormStrategy strategy, IReceiptFormService receiptFormService, IClientService clientService)
         {
             _carReceiptForms = carReceiptForms;
             _strategy = strategy;
+            _receiptFormService = receiptFormService;
+            _clientService = clientService;
             _formTypes = _carReceiptForms
                 .Select(f => f.Type);
         }
@@ -26,12 +31,27 @@ namespace CarRentalCompany.Presentation.Services
             {
                 try
                 {
+                    var clients = _clientService.GetAllClients();
+                    if (clients.Any())
+                    {
+                        var counter = 1;
+
+                        Console.WriteLine("-------Welcome in Incredible Maja's Car Rental-------" +
+                        $"\nPress specific number to choose client:");
+
+                        foreach (var client in clients)
+                        {
+                            Console.WriteLine($"{counter}) {client.Name}");
+                            counter++;
+                        }
+                    }
+
+
                     CreateMenu();
                     var pressedKey = Console.ReadKey();
                     reportWasSaved = ValidatePressedKey();
                     var builder = GetBuilder(pressedKey.KeyChar);
-                    builder.CreateEmpty();
-                    builder.GetResult();
+                    _receiptFormService.CreateEmptyReceiptForm(builder);
                     Console.WriteLine("\nRaport wygenerowano");
                     break;
                 }

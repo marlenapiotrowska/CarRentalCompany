@@ -1,5 +1,4 @@
-﻿
-namespace CarRentalCompany.Domain.CarBrands
+﻿namespace CarRentalCompany.Domain.Models.CarBrands
 {
     public class ReceiptFormTypes
     {

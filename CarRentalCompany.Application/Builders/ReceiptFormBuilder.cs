@@ -1,5 +1,5 @@
 ﻿using CarRentalCompany.Application.Repositories;
-using CarRentalCompany.Strategies.CarBrands;
+using CarRentalCompany.Domain.Models.CarBrands;
 using System.Text;
 
 namespace CarRentalCompany.Application.Builders

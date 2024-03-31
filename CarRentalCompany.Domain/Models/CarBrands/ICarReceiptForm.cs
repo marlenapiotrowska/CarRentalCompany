@@ -1,6 +1,6 @@
 ﻿using CarRentalCompany.Domain.AdditionalTypes;
 
-namespace CarRentalCompany.Strategies.CarBrands
+namespace CarRentalCompany.Domain.Models.CarBrands
 {
     public interface ICarReceiptForm
     {

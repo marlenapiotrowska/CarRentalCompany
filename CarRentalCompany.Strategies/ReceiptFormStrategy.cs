@@ -1,5 +1,5 @@
 ﻿using CarRentalCompany.Application.Builders;
-using CarRentalCompany.Strategies.CarBrands;
+using CarRentalCompany.Domain.Models.CarBrands;
 
 namespace CarRentalCompany.Strategies
 {
