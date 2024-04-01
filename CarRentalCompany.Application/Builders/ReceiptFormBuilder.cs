@@ -1,18 +1,14 @@
-﻿using CarRentalCompany.Application.Repositories;
-using CarRentalCompany.Domain.Models.CarBrands;
-using System.Text;
+﻿using System.Text;
 
 namespace CarRentalCompany.Application.Builders
 {
     internal class ReceiptFormBuilder
     {
         private readonly StringBuilder _stringBuilder;
-        private readonly IReceiptFormRepository _repository;
 
-        public ReceiptFormBuilder(IReceiptFormRepository repository)
+        public ReceiptFormBuilder()
         {
             _stringBuilder = new StringBuilder();
-            _repository = repository;
         }
 
         public string GetDefaultReceiptForm()
@@ -31,11 +27,6 @@ namespace CarRentalCompany.Application.Builders
         {
             var path = @"D:\4 - Maja sie uczy\4 - My apps\CarRentalCompanyFiles\ReceiptForm.txt";
             File.WriteAllText(path, builder.ToString());
-        }
-
-        public void AddReceiptForm(ICarReceiptForm receiptForm, Guid clientId)
-        {
-            _repository.Add(receiptForm, clientId);
         }
     }
 }

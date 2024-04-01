@@ -14,11 +14,11 @@ namespace CarRentalCompany.Application.Builders
         public bool IsReceiptFormType(ICarReceiptForm receiptForm)
             => receiptForm.GetType() == typeof(MercedesReceiptForm);
 
-        public MercedesReceiptFormBuilder(IReceiptFormRepository repostiory)
+        public MercedesReceiptFormBuilder()
         {
             _receiptFormType = new MercedesReceiptForm();
             _stringBuilder = new StringBuilder();
-            _baseBuilder = new ReceiptFormBuilder(repostiory);
+            _baseBuilder = new ReceiptFormBuilder();
         }
 
         public IReceiptFormBuilder CreateEmpty()

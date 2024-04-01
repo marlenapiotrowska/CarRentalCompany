@@ -46,7 +46,6 @@ namespace CarRentalCompany.Presentation.Services
                         }
                     }
 
-
                     CreateMenu();
                     var pressedKey = Console.ReadKey();
                     reportWasSaved = ValidatePressedKey();

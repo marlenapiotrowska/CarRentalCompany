@@ -14,11 +14,11 @@ namespace CarRentalCompany.Application.Builders
         public bool IsReceiptFormType(ICarReceiptForm receiptForm)
             => receiptForm.GetType() == typeof(VolvoReceiptForm);
 
-        public VolvoReceiptFormBuilder(IReceiptFormRepository repository)
+        public VolvoReceiptFormBuilder()
         {
             _receiptFormType = new VolvoReceiptForm();
             _stringBuilder = new StringBuilder();
-            _baseBuilder = new ReceiptFormBuilder(repository);
+            _baseBuilder = new ReceiptFormBuilder();
         }
 
         public IReceiptFormBuilder CreateEmpty()
