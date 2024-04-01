@@ -1,31 +1,27 @@
 ﻿using CarRentalCompany.Application.Builders;
-using CarRentalCompany.Strategies.CarBrands;
+using CarRentalCompany.Domain.Models.CarBrands;
 
 namespace CarRentalCompany.Strategies
 {
     public class ReceiptFormStrategy : IReceiptFormStrategy
     {
-        private readonly Dictionary<string, ICarReceiptForm> _receiptFormStrategy;
+        private readonly IEnumerable<ICarReceiptForm> _carReceiptForms;
         private readonly IEnumerable<IReceiptFormBuilder> _builders;
 
-        public ReceiptFormStrategy(IEnumerable<IReceiptFormBuilder> builders)
+        public ReceiptFormStrategy(IEnumerable<ICarReceiptForm> carReceiptForms,IEnumerable<IReceiptFormBuilder> builders)
         {
-            _receiptFormStrategy = new Dictionary<string, ICarReceiptForm>
-                    {
-                        { "Typical", new CarReceiptForm() },
-                        { "Porsche", new PorscheReceiptForm() },
-                        { "Mercedes", new MercedesReceiptForm() },
-                        { "Volvo", new VolvoReceiptForm() },
-                    };
-
+            _carReceiptForms = carReceiptForms;
             _builders = builders;
         }
 
-        public IReceiptFormBuilder ResolveReceiptForm(string key)
+        public IReceiptFormBuilder ResolveReceiptForm(int key)
         {
-            if (_receiptFormStrategy.TryGetValue(key, out var receiptForm))
+            var form = _carReceiptForms
+                .FirstOrDefault(f => f.Type.ContainsKey(key));
+
+            if (form != null)
             {
-                return _builders.SingleOrDefault(b => b.IsReceiptFormType(receiptForm))
+                return _builders.SingleOrDefault(b => b.IsReceiptFormType(form))
                         ?? throw new InvalidOperationException($"There is no possibility to create a receipt form with {key} value");
             }
 

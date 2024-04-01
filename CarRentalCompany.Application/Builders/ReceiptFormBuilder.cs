@@ -22,5 +22,11 @@ namespace CarRentalCompany.Application.Builders
 
             return _stringBuilder.ToString();
         }
+
+        public void SaveFile(StringBuilder builder)
+        {
+            var path = @"D:\4 - Maja sie uczy\4 - My apps\CarRentalCompanyFiles\ReceiptForm.txt";
+            File.WriteAllText(path, builder.ToString());
+        }
     }
 }

@@ -1,18 +1,19 @@
 ﻿using CarRentalCompany.Application.Builders;
+using CarRentalCompany.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CarRentalCompany.Application
+namespace CarRentalCompany.Application.Extensions
 {
-    public static class Extensions
+    public static class ApplicationStartup
     {
-        public static IServiceCollection AddApplication(this IServiceCollection services)
+        public static void AddApplication(this IServiceCollection services)
         {
             services.AddSingleton<IReceiptFormBuilder, TypicalReceiptFormBuilder>();
             services.AddSingleton<IReceiptFormBuilder, PorscheReceiptFormBuilder>();
             services.AddSingleton<IReceiptFormBuilder, MercedesReceiptFormBuilder>();
             services.AddSingleton<IReceiptFormBuilder, VolvoReceiptFormBuilder>();
-
-            return services;
+            services.AddTransient<IClientService, ClientService>();
+            services.AddTransient<IReceiptFormService, ReceiptFormService>();
         }
     }
 }

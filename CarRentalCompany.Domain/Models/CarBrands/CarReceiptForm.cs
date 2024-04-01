@@ -1,9 +1,11 @@
 ﻿using CarRentalCompany.Domain.AdditionalTypes;
 
-namespace CarRentalCompany.Strategies.CarBrands
+namespace CarRentalCompany.Domain.Models.CarBrands
 {
     public class CarReceiptForm : ICarReceiptForm
     {
+        public Dictionary<int, string> Type
+            => ReceiptFormTypes.Create(1);
         public string Payload { get; set; }
         public int TirePressure { get; set; }
         public FuelLevel FuelLevel { get; set; }
