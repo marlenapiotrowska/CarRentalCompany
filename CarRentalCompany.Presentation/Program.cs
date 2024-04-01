@@ -1,7 +1,4 @@
-﻿using CarRentalCompany.Application.Builders;
-using CarRentalCompany.Application.Extensions;
-using CarRentalCompany.Application.Repositories;
-using CarRentalCompany.Application.Services;
+﻿using CarRentalCompany.Application.Services;
 using CarRentalCompany.Domain.Models.CarBrands;
 using CarRentalCompany.Infrastructure;
 using CarRentalCompany.Presentation.Services;
@@ -26,8 +23,6 @@ namespace CarRentalCompany.Presentation
                 services.AddSingleton<ICarReceiptForm, PorscheReceiptForm>();
                 services.AddSingleton<ICarReceiptForm, VolvoReceiptForm>();
                 services.AddTransient<IReceiptFormStrategy, ReceiptFormStrategy>();
-                services.AddInfrastructure();
-                services.AddApplication();
             });
 
             var app = host.Build();
