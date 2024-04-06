@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using CarRentalCompany.Application.Builders;
+using CarRentalCompany.Application.Services;
 
 namespace CarRentalCompany.Application
 {
@@ -8,24 +8,14 @@ namespace CarRentalCompany.Application
         public static void RegisterApplication(this ContainerBuilder builder)
         {
             builder
-                .RegisterType<TypicalReceiptFormBuilder>()
-                .As<IReceiptFormBuilder>()
-                .SingleInstance();
+                .RegisterType<ClientService>()
+                .As<IClientService>()
+                .InstancePerRequest();
 
             builder
-               .RegisterType<PorscheReceiptFormBuilder>()
-               .As<IReceiptFormBuilder>()
-               .SingleInstance();
-
-            builder
-               .RegisterType<MercedesReceiptFormBuilder>()
-               .As<IReceiptFormBuilder>()
-               .SingleInstance();
-
-            builder
-               .RegisterType<VolvoReceiptFormBuilder>()
-               .As<IReceiptFormBuilder>()
-               .SingleInstance();
+               .RegisterType<ReceiptFormService>()
+               .As<IReceiptFormService>()
+               .InstancePerRequest();
         }
     }
 }

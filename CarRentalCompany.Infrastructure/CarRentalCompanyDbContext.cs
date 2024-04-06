@@ -8,6 +8,7 @@ namespace CarRentalCompany.Infrastructure
     {
         public DbSet<ReceiptForm> ReceiptForms { get; set; }
         public DbSet<Client> Clients { get; set; }
+        public DbSet<Activity> Activities { get; set; }
 
         public CarRentalCompanyDbContext(DbContextOptions<CarRentalCompanyDbContext> options)
         : base(options)

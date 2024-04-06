@@ -1,6 +1,6 @@
 ﻿using CarRentalCompany.Domain.Models;
 
-namespace CarRentalCompany.Application.Repositories
+namespace CarRentalCompany.Domain.Repositories
 {
     public interface IClientRepository
     {

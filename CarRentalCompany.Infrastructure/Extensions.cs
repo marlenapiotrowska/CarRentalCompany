@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using CarRentalCompany.Application.Repositories;
+using CarRentalCompany.Domain.Repositories;
 using CarRentalCompany.Infrastructure.Repositories;
 
 namespace CarRentalCompany.Infrastructure

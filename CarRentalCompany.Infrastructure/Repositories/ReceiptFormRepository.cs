@@ -1,5 +1,5 @@
-﻿using CarRentalCompany.Application.Repositories;
-using CarRentalCompany.Domain.Models.CarBrands;
+﻿using CarRentalCompany.Domain.Models;
+using CarRentalCompany.Domain.Repositories;
 using CarRentalCompany.Infrastructure.Entities;
 
 namespace CarRentalCompany.Infrastructure.Repositories
@@ -13,18 +13,18 @@ namespace CarRentalCompany.Infrastructure.Repositories
             _context = context;
         }
 
-        public void Add(ICarReceiptForm carReceiptForm, Guid clientId)
+        public void Add(CarReceiptForm carReceiptForm, Guid clientId)
         {
-            var receiptForm = ReceiptForm
-                .Create
-                (carReceiptForm.Type
-                    .Select(x => x.Value)
-                    .First(),
-                carReceiptForm.Payload,
-                clientId);
+            //var receiptForm = ReceiptForm
+            //    .Create
+            //    (carReceiptForm.Type
+            //        .Select(x => x.Value)
+            //        .First(),
+            //    carReceiptForm.Payload,
+            //    clientId);
 
-            _context.ReceiptForms.Add(receiptForm);
-            _context.SaveChanges();
+            //_context.ReceiptForms.Add(receiptForm);
+            //_context.SaveChanges();
         }
     }
 }

@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\CarRentalCompany.Domain\CarRentalCompany.Domain.csproj" />
     <ProjectReference Include="..\CarRentalCompany.Integration\CarRentalCompany.Integration.csproj" />
   </ItemGroup>
 

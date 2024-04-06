@@ -1,7 +1,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using CarRentalCompany.Application;
 using CarRentalCompany.Infrastructure;
+using CarRentalCompany.Application;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

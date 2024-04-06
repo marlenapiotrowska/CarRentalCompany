@@ -1,6 +1,5 @@
-﻿using CarRentalCompany.Application.Builders;
-using CarRentalCompany.Application.Repositories;
-using CarRentalCompany.Domain.Models.CarBrands;
+﻿using CarRentalCompany.Domain.Models;
+using CarRentalCompany.Domain.Repositories;
 
 namespace CarRentalCompany.Application.Services
 {
@@ -13,15 +12,9 @@ namespace CarRentalCompany.Application.Services
             _repository = repository;
         }
 
-        public void AddNewReceiptForm(ICarReceiptForm receiptForm, Guid clientId)
+        public void AddNewReceiptForm(CarReceiptForm receiptForm, Guid clientId)
         {
             _repository.Add(receiptForm, clientId);
-        }
-
-        public void CreateEmptyReceiptForm(IReceiptFormBuilder builder)
-        {
-            builder.CreateEmpty();
-            builder.SaveResult();
         }
     }
 }
