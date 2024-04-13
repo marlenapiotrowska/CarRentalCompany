@@ -13,18 +13,20 @@ namespace CarRentalCompany.Infrastructure.Repositories
             _context = context;
         }
 
-        public void Add(CarReceiptForm carReceiptForm, Guid clientId)
+        public void Add(CarReceiptForm carReceiptForm)
         {
-            //var receiptForm = ReceiptForm
-            //    .Create
-            //    (carReceiptForm.Type
-            //        .Select(x => x.Value)
-            //        .First(),
-            //    carReceiptForm.Payload,
-            //    clientId);
+            var value = carReceiptForm.Activities?
+                    .Select(a => $"{a.Name} {a.Payload}")
+                    .ToList();
 
-            //_context.ReceiptForms.Add(receiptForm);
-            //_context.SaveChanges();
+            var receiptForm = ReceiptForm
+                .Create
+                (carReceiptForm.Id,
+                carReceiptForm.Type,
+                string.Join(", ", value) ?? string.Empty,
+                carReceiptForm.ClientId);
+            _context.ReceiptForms.Add(receiptForm);
+            _context.SaveChanges();
         }
     }
 }

@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <InvariantGlobalization>true</InvariantGlobalization>
+    <InvariantGlobalization>false</InvariantGlobalization>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +17,9 @@
   <ItemGroup>
     <ProjectReference Include="..\CarRentalCompany.Application\CarRentalCompany.Application.csproj" />
     <ProjectReference Include="..\CarRentalCompany.Infrastructure\CarRentalCompany.Infrastructure.csproj" />
+    <ProjectReference Include="..\CarRentalCompany.Integration.Mercedes\CarRentalCompany.Integration.Mercedes.csproj" />
+    <ProjectReference Include="..\CarRentalCompany.Integration.Porsche\CarRentalCompany.Integration.Porsche.csproj" />
+    <ProjectReference Include="..\CarRentalCompany.Integration.Volvo\CarRentalCompany.Integration.Volvo.csproj" />
   </ItemGroup>
 
 </Project>

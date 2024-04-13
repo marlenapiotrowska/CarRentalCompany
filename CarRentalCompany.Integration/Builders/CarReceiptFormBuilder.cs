@@ -6,9 +6,9 @@ namespace CarRentalCompany.Integration.Builders
     {
         private readonly CarReceiptForm _carReceiptForm;
 
-        public CarReceiptFormBuilder(Guid id, string type, Guid clientId)
+        public CarReceiptFormBuilder(string type, Guid clientId)
         {
-            _carReceiptForm = new CarReceiptForm(id, type, clientId);
+            _carReceiptForm = new CarReceiptForm(type, clientId);
         }
 
         public void AddActivity(Activity activity)

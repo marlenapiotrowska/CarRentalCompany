@@ -10,12 +10,12 @@ namespace CarRentalCompany.Application
             builder
                 .RegisterType<ClientService>()
                 .As<IClientService>()
-                .InstancePerRequest();
+                .InstancePerLifetimeScope();
 
             builder
                .RegisterType<ReceiptFormService>()
                .As<IReceiptFormService>()
-               .InstancePerRequest();
+               .InstancePerLifetimeScope();
         }
     }
 }

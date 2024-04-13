@@ -3,11 +3,9 @@ using CarRentalCompany.Integration.Builders;
 
 namespace CarRentalCompany.Integration.Factories
 {
-    internal class CarReceiptFormFactory : ICarReceiptFormFactory
+    public class CarReceiptFormFactory : ICarReceiptFormFactory
     {
-        public string Type 
-            => "Base";
-
+        public static string Type => string.Empty;
         public CarReceiptForm Apply(CarReceiptFormBuilder builder)
         {
             builder.AddActivity(new Activity("Tire pressure"));

@@ -14,6 +14,6 @@
         }
 
         public string Name { get; }
-        public string Payload { get; }
+        public string? Payload { get; }
     }
 }

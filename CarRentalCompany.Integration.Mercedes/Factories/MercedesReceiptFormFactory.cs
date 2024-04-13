@@ -4,9 +4,9 @@ using CarRentalCompany.Integration.Factories;
 
 namespace CarRentalCompany.Integration.Mercedes.Factories
 {
-    internal class MercedesReceiptFormFactory : ICarReceiptFormFactory
+    public class MercedesReceiptFormFactory : ICarReceiptFormFactory
     {
-        public string Type
+        public static string Type
             => "Mercedes";
 
         public CarReceiptForm Apply(CarReceiptFormBuilder builder)

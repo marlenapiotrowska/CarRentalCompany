@@ -8,10 +8,11 @@
         public virtual Client Client { get; set; }
         public Guid ClientId { get; set; }
 
-        public static ReceiptForm Create(string formType, string value, Guid clientId)
+        public static ReceiptForm Create(Guid id, string formType, string value, Guid clientId)
         {
             return new ReceiptForm
             {
+                Id = id,
                 FormType = formType,
                 Value = value,
                 ClientId = clientId

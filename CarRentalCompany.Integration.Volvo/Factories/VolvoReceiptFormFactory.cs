@@ -6,7 +6,7 @@ namespace CarRentalCompany.Integration.Volvo.Factories
 {
     public class VolvoReceiptFormFactory : ICarReceiptFormFactory
     {
-        public string Type 
+        public static string Type 
             => "Volvo";
 
         public CarReceiptForm Apply(CarReceiptFormBuilder builder)

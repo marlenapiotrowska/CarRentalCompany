@@ -6,7 +6,7 @@ namespace CarRentalCompany.Integration.Porsche.Factories
 {
     public class PorscheReceiptFormFactory : ICarReceiptFormFactory
     {
-        public string Type 
+        public static string Type 
             => "Porsche";
 
         public CarReceiptForm Apply(CarReceiptFormBuilder builder)

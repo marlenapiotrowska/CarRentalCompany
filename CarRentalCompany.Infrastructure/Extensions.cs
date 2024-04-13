@@ -11,12 +11,12 @@ namespace CarRentalCompany.Infrastructure
             builder
                 .RegisterType<ClientRepository>()
                 .As<IClientRepository>()
-                .InstancePerRequest();
+                .InstancePerLifetimeScope();
 
             builder
                 .RegisterType<ReceiptFormRepository>()
                 .As<IReceiptFormRepository>()
-                .InstancePerRequest();
+                .InstancePerLifetimeScope();
         }
     }
 }
