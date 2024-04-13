@@ -19,6 +19,7 @@ namespace CarRentalCompany.Infrastructure
         {
             modelBuilder.ApplyConfiguration(new ClientConfiguration());
             modelBuilder.ApplyConfiguration(new ReceiptFormConfiguration());
+            modelBuilder.ApplyConfiguration(new ReceiptFormActivitiesConfiguration());
         }
     }
 }
