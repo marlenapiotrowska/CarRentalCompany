@@ -7,7 +7,7 @@
         public string Value { get; set; }
         public virtual Client Client { get; set; }
         public Guid ClientId { get; set; }
-        public ICollection<ReceiptFormActivities> ReceiptFormActivities { get; set; }
+        public ICollection<ActivityInstance> Activities { get; set; }
 
         public static ReceiptForm Create(Guid id, string formType, string value, Guid clientId)
         {

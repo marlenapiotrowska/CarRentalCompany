@@ -8,6 +8,7 @@ using CarRentalCompany.Integration.Mercedes.Factories;
 using CarRentalCompany.Integration.Porsche.Factories;
 using CarRentalCompany.Integration.Volvo.Factories;
 using CarRentalCompany.API.Factories;
+using CarRentalCompany.Infrastructure.Seeder;
 
 var builder = WebApplication.CreateBuilder(args);
 var connection = builder.Configuration.GetConnectionString("DBConnection");
@@ -19,6 +20,7 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
     {
         builder.RegisterApplication();
         builder.RegisterInfrastructure();
+        builder.RegisterType<ActivitySeeder>().InstancePerLifetimeScope();
         builder.RegisterType<CarReceiptFormDtoFactory>().As<ICarReceiptFormDtoFactory>().InstancePerLifetimeScope();
         builder.RegisterType<CarReceiptFormFactory>().Keyed<ICarReceiptFormFactory>(CarReceiptFormFactory.Type);
         builder.RegisterType<MercedesReceiptFormFactory>().Keyed<ICarReceiptFormFactory>(MercedesReceiptFormFactory.Type);
@@ -30,6 +32,10 @@ builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+var scope = app.Services.CreateScope();
+var seeder = scope.ServiceProvider.GetRequiredService<ActivitySeeder>();
+await seeder.Seed();
 
 if (app.Environment.IsDevelopment())
 {

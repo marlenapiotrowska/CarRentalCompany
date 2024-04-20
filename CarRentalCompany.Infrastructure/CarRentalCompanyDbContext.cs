@@ -8,7 +8,8 @@ namespace CarRentalCompany.Infrastructure
     {
         public DbSet<ReceiptForm> ReceiptForms { get; set; }
         public DbSet<Client> Clients { get; set; }
-        public DbSet<Activity> Activities { get; set; }
+        public DbSet<ActivityDefinition> ActivitiesDefinitions { get; set; }
+        public DbSet<ActivityInstance> ActivitiesInstances { get; set; }
 
         public CarRentalCompanyDbContext(DbContextOptions<CarRentalCompanyDbContext> options)
         : base(options)
@@ -19,7 +20,8 @@ namespace CarRentalCompany.Infrastructure
         {
             modelBuilder.ApplyConfiguration(new ClientConfiguration());
             modelBuilder.ApplyConfiguration(new ReceiptFormConfiguration());
-            modelBuilder.ApplyConfiguration(new ReceiptFormActivitiesConfiguration());
+            modelBuilder.ApplyConfiguration(new ActivityDefinitionConfiguration());
+            modelBuilder.ApplyConfiguration(new ActivityInstanceConfiguration());
         }
     }
 }

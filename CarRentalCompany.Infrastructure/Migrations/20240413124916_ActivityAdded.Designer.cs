@@ -4,6 +4,7 @@ using CarRentalCompany.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRentalCompany.Infrastructure.Migrations
 {
     [DbContext(typeof(CarRentalCompanyDbContext))]
-    partial class CarRentalCompanyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240413124916_ActivityAdded")]
+    partial class ActivityAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,18 +25,22 @@ namespace CarRentalCompany.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.ActivityDefinition", b =>
+            modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.Activity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OrderNo")
-                        .HasColumnType("int");
+                    b.Property<string>("Payload")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -41,35 +48,7 @@ namespace CarRentalCompany.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ActivitiesDefinitions");
-                });
-
-            modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.ActivityInstance", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ActivityDefinitionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsCompleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Payload")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ReceiptFormId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ActivityDefinitionId");
-
-                    b.HasIndex("ReceiptFormId");
-
-                    b.ToTable("ActivitiesInstances");
+                    b.ToTable("Activities");
                 });
 
             modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.Client", b =>
@@ -111,23 +90,27 @@ namespace CarRentalCompany.Infrastructure.Migrations
                     b.ToTable("ReceiptForms");
                 });
 
-            modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.ActivityInstance", b =>
+            modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.ReceiptFormActivities", b =>
                 {
-                    b.HasOne("CarRentalCompany.Infrastructure.Entities.ActivityDefinition", "ActivityDefinition")
-                        .WithMany("Activities")
-                        .HasForeignKey("ActivityDefinitionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.HasOne("CarRentalCompany.Infrastructure.Entities.ReceiptForm", "ReceiptForm")
-                        .WithMany("Activities")
-                        .HasForeignKey("ReceiptFormId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Navigation("ActivityDefinition");
+                    b.Property<Guid>("ActivityId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Navigation("ReceiptForm");
+                    b.Property<Guid>("ReceiptFormId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActivityId");
+
+                    b.HasIndex("ReceiptFormId");
+
+                    b.ToTable("ReceiptFormActivities");
                 });
 
             modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.ReceiptForm", b =>
@@ -141,9 +124,28 @@ namespace CarRentalCompany.Infrastructure.Migrations
                     b.Navigation("Client");
                 });
 
-            modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.ActivityDefinition", b =>
+            modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.ReceiptFormActivities", b =>
                 {
-                    b.Navigation("Activities");
+                    b.HasOne("CarRentalCompany.Infrastructure.Entities.Activity", "Activity")
+                        .WithMany("ReceiptFormActivities")
+                        .HasForeignKey("ActivityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CarRentalCompany.Infrastructure.Entities.ReceiptForm", "ReceiptForm")
+                        .WithMany("ReceiptFormActivities")
+                        .HasForeignKey("ReceiptFormId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Activity");
+
+                    b.Navigation("ReceiptForm");
+                });
+
+            modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.Activity", b =>
+                {
+                    b.Navigation("ReceiptFormActivities");
                 });
 
             modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.Client", b =>
@@ -153,7 +155,7 @@ namespace CarRentalCompany.Infrastructure.Migrations
 
             modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.ReceiptForm", b =>
                 {
-                    b.Navigation("Activities");
+                    b.Navigation("ReceiptFormActivities");
                 });
 #pragma warning restore 612, 618
         }
