@@ -1,4 +1,6 @@
-﻿namespace CarRentalCompany.Infrastructure.Entities
+﻿using ActivityDefinitionDomain = CarRentalCompany.Domain.Models.ActivityDefinition;
+
+namespace CarRentalCompany.Infrastructure.Entities
 {
     public class ActivityDefinition
     {
@@ -12,10 +14,16 @@
         {
             return new ActivityDefinition
             {
+                Id = Guid.NewGuid(),
                 Type = type,
                 Name = name,
                 OrderNo = orderNo,
             };
+        }
+
+        public ActivityDefinitionDomain CreateViewModel()
+        {
+            return new ActivityDefinitionDomain(Id, Type, Name, OrderNo);
         }
     }
 }

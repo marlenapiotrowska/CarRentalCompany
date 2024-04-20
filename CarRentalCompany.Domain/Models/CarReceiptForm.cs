@@ -21,9 +21,9 @@
         public Guid Id { get; }
         public string Type { get; }
         public Guid ClientId { get; }
-        public List<Activity> Activities { get; }
+        public List<ActivityInstance> Activities { get; }
 
-        public void AddActivity(Activity activity)
+        public void AddActivity(ActivityInstance activity)
         {
             Activities.Add(activity);
         }

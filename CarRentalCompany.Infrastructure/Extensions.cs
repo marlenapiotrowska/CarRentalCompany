@@ -17,6 +17,16 @@ namespace CarRentalCompany.Infrastructure
                 .RegisterType<ReceiptFormRepository>()
                 .As<IReceiptFormRepository>()
                 .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<ActivityDefinitionRepository>()
+                .As<IActivityDefinitionRepository>()
+                .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<ActivityInstanceRepository>()
+                .As<IActivityInstanceRepository>()
+                .InstancePerLifetimeScope();
         }
     }
 }

@@ -6,14 +6,13 @@ namespace CarRentalCompany.Integration.Factories
     public class CarReceiptFormFactory : ICarReceiptFormFactory
     {
         public static string Type => string.Empty;
-        public CarReceiptForm Apply(CarReceiptFormBuilder builder)
+        public CarReceiptForm Apply(CarReceiptFormBuilder builder, IEnumerable<ActivityDefinition> activities)
         {
-            builder.AddActivity(new Activity("Tire pressure"));
-            builder.AddActivity(new Activity("Fuel level"));
-            builder.AddActivity(new Activity("Car mileage"));
-            builder.AddActivity(new Activity("System updated"));
-            builder.AddActivity(new Activity("Refueled"));
-            builder.AddActivity(new Activity("Washed"));
+            var activitiesInstances = activities
+               .Select(activity => activity.CreateInstance(builder.GetFormId()))
+               .ToList();
+
+            builder.AddActivities(activitiesInstances);
 
             return builder.Build();
         }

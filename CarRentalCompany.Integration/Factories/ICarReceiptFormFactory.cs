@@ -5,6 +5,6 @@ namespace CarRentalCompany.Integration.Factories
 {
     public interface ICarReceiptFormFactory
     {
-        public CarReceiptForm Apply(CarReceiptFormBuilder builder);
+        public CarReceiptForm Apply(CarReceiptFormBuilder builder, IEnumerable<ActivityDefinition> activities);
     }
 }

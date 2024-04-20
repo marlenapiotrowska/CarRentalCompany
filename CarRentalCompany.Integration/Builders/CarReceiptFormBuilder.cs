@@ -11,9 +11,17 @@ namespace CarRentalCompany.Integration.Builders
             _carReceiptForm = new CarReceiptForm(type, clientId);
         }
 
-        public void AddActivity(Activity activity)
+        public Guid GetFormId()
         {
-            _carReceiptForm.AddActivity(activity);
+            return _carReceiptForm.Id;
+        }
+
+        public void AddActivities(IEnumerable<ActivityInstance> activities)
+        {
+            foreach (var activity in activities)
+            {
+                _carReceiptForm.AddActivity(activity);
+            }
         }
 
         public CarReceiptForm Build()

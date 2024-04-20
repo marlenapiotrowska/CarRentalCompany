@@ -9,27 +9,40 @@ namespace CarRentalCompany.Application.Services
     internal class ReceiptFormService : IReceiptFormService
     {
         private readonly IIndex<string, ICarReceiptFormFactory> _carReceiptFormFactories;
-        private readonly IReceiptFormRepository _repository;
+        private readonly IReceiptFormRepository _formRepository;
+        private readonly IActivityInstanceRepository _activityInstanceRepository;
+        private readonly IActivityDefinitionRepository _activityDefinitionRepository;
 
-        public ReceiptFormService(IIndex<string, ICarReceiptFormFactory> carReceiptFormFactories, IReceiptFormRepository repository)
+        public ReceiptFormService(IIndex<string, ICarReceiptFormFactory> carReceiptFormFactories, 
+            IReceiptFormRepository formRepository, IActivityInstanceRepository activityInstanceRepository, 
+            IActivityDefinitionRepository activityDefinitionRepository)
         {
             _carReceiptFormFactories = carReceiptFormFactories;
-            _repository = repository;
+            _formRepository = formRepository;
+            _activityInstanceRepository = activityInstanceRepository;
+            _activityDefinitionRepository = activityDefinitionRepository;
         }
 
         public CarReceiptForm CreateNewCarReceiptForm(string brand, Guid clientId)
         {
             var builder = new CarReceiptFormBuilder(brand, clientId);
-            var form = _carReceiptFormFactories[brand].Apply(builder);
+            var activities = _activityDefinitionRepository.GetForType(brand);
+            var form = _carReceiptFormFactories[brand].Apply(builder, activities);
 
             AddNewReceiptForm(form);
+            AddActivities(form.Activities);
 
             return form;
         }
 
+        private void AddActivities(List<ActivityInstance> activities)
+        {
+            _activityInstanceRepository.Add(activities);
+        }
+
         private void AddNewReceiptForm(CarReceiptForm receiptForm)
         {
-            _repository.Add(receiptForm);
+            _formRepository.Add(receiptForm);
         }
     }
 }

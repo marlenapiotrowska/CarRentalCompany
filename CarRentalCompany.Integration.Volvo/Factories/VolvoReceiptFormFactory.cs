@@ -9,9 +9,13 @@ namespace CarRentalCompany.Integration.Volvo.Factories
         public static string Type 
             => "Volvo";
 
-        public CarReceiptForm Apply(CarReceiptFormBuilder builder)
+        public CarReceiptForm Apply(CarReceiptFormBuilder builder, IEnumerable<ActivityDefinition> activities)
         {
-            builder.AddActivity(new Activity("SteeringWheel washed manually"));
+            var activitiesInstances = activities
+                .Select(activity => activity.CreateInstance(builder.GetFormId()))
+                .ToList();
+
+            builder.AddActivities(activitiesInstances);
 
             return builder.Build();
         }

@@ -9,10 +9,13 @@ namespace CarRentalCompany.Integration.Mercedes.Factories
         public static string Type
             => "Mercedes";
 
-        public CarReceiptForm Apply(CarReceiptFormBuilder builder)
+        public CarReceiptForm Apply(CarReceiptFormBuilder builder, IEnumerable<ActivityDefinition> activities)
         {
-            builder.AddActivity(new Activity("Parking sensor condition"));
-            builder.AddActivity(new Activity("Wheel alignment"));
+            var activitiesInstances = activities
+               .Select(activity => activity.CreateInstance(builder.GetFormId()))
+               .ToList();
+
+            builder.AddActivities(activitiesInstances);
 
             return builder.Build();
         }

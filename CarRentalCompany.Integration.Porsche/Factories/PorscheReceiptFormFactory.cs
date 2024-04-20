@@ -9,10 +9,13 @@ namespace CarRentalCompany.Integration.Porsche.Factories
         public static string Type 
             => "Porsche";
 
-        public CarReceiptForm Apply(CarReceiptFormBuilder builder)
+        public CarReceiptForm Apply(CarReceiptFormBuilder builder, IEnumerable<ActivityDefinition> activities)
         {
-            builder.AddActivity(new Activity("Cars paint condition"));
-            builder.AddActivity(new Activity("Porsche sign condition"));
+            var activitiesInstances = activities
+               .Select(activity => activity.CreateInstance(builder.GetFormId()))
+               .ToList();
+
+            builder.AddActivities(activitiesInstances);
 
             return builder.Build();
         }
