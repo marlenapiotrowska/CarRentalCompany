@@ -25,10 +25,10 @@ namespace CarRentalCompany.Infrastructure.Seeder
                         ActivityDefinition.Create(string.Empty, "System updated",4),
                         ActivityDefinition.Create(string.Empty, "Refueled", 5),
                         ActivityDefinition.Create(string.Empty, "Washed", 6),
-                        ActivityDefinition.Create("Mercedes", "Parking sensor condition", 4),
-                        ActivityDefinition.Create("Mercedes", "Wheel alignment", 5),
-                        ActivityDefinition.Create("Porsche", "Cars paint condition", 4),
-                        ActivityDefinition.Create("Porsche", "Porsche sign condition", 5),
+                        ActivityDefinition.Create("Mercedes", "Parking sensor condition", 4.1),
+                        ActivityDefinition.Create("Mercedes", "Wheel alignment", 4.2),
+                        ActivityDefinition.Create("Porsche", "Cars paint condition", 4.1),
+                        ActivityDefinition.Create("Porsche", "Porsche sign condition", 4.2),
                         ActivityDefinition.Create("Volvo", "SteeringWheel washed manually", 7),
                     };
 

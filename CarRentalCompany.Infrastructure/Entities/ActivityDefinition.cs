@@ -7,10 +7,10 @@ namespace CarRentalCompany.Infrastructure.Entities
         public Guid Id { get; set; }
         public string Type { get; set; }
         public string Name { get; set; }
-        public int OrderNo { get; set; }
+        public double OrderNo { get; set; }
         public ICollection<ActivityInstance> Activities { get; set; }
     
-        public static ActivityDefinition Create(string type, string name, int orderNo)
+        public static ActivityDefinition Create(string type, string name, double orderNo)
         {
             return new ActivityDefinition
             {

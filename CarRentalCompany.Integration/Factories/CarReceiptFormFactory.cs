@@ -9,8 +9,9 @@ namespace CarRentalCompany.Integration.Factories
         public CarReceiptForm Apply(CarReceiptFormBuilder builder, IEnumerable<ActivityDefinition> activities)
         {
             var activitiesInstances = activities
-               .Select(activity => activity.CreateInstance(builder.GetFormId()))
-               .ToList();
+                .OrderBy(a => a.OrderNo)
+                .Select(activity => activity.CreateInstance(builder.GetFormId()))
+                .ToList();
 
             builder.AddActivities(activitiesInstances);
 

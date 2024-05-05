@@ -4,6 +4,7 @@ using CarRentalCompany.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRentalCompany.Infrastructure.Migrations
 {
     [DbContext(typeof(CarRentalCompanyDbContext))]
-    partial class CarRentalCompanyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240420154401_ValueColumnDeletedFromActivityTable")]
+    partial class ValueColumnDeletedFromActivityTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,8 +35,8 @@ namespace CarRentalCompany.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("OrderNo")
-                        .HasColumnType("float");
+                    b.Property<int>("OrderNo")
+                        .HasColumnType("int");
 
                     b.Property<string>("Type")
                         .IsRequired()

@@ -8,7 +8,7 @@ namespace CarRentalCompany.API.Factories
         public CarReceiptFormDto Create(CarReceiptForm form)
         {
             var value = form.Activities?
-                    .Select(a => $"{a.Name} {a.Payload}")
+                    .Select(GetActivity)
                     .ToList();
 
             return new CarReceiptFormDto
@@ -18,6 +18,16 @@ namespace CarRentalCompany.API.Factories
                 Value = string.Join(", ", value) ?? string.Empty,
                 ClientId = form.ClientId
             };
+        }
+
+        private static string GetActivity(ActivityInstance activity)
+        {
+            if (activity.Payload == string.Empty)
+            {
+                return $"{activity.Name}";
+            }
+
+            return $"{activity.Name} {activity.Payload}";
         }
     }
 }

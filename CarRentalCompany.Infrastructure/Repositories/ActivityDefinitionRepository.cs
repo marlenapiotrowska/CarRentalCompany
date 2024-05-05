@@ -15,7 +15,7 @@ namespace CarRentalCompany.Infrastructure.Repositories
         public IEnumerable<ActivityDefinition> GetForType(string type)
         {
             return _context.ActivitiesDefinitions
-                .Where(d => d.Type == type)
+                .Where(d => d.Type == type || d.Type == string.Empty)
                 .ToList()
                 .Select(d => d.CreateViewModel())
                 .ToList();
