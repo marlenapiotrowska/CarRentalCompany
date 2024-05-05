@@ -7,27 +7,34 @@ namespace CarRentalCompany.API.Factories
     {
         public CarReceiptFormDto Create(CarReceiptForm form)
         {
-            var value = form.Activities?
-                    .Select(GetActivity)
-                    .ToList();
-
             return new CarReceiptFormDto
             {
                 Id = form.Id,
                 Type = form.Type,
-                Value = string.Join(", ", value) ?? string.Empty,
+                Activities = CreateActivityDto(form.Activities),
                 ClientId = form.ClientId
             };
         }
 
-        private static string GetActivity(ActivityInstance activity)
+        private IEnumerable<ActivityDto> CreateActivityDto(IEnumerable<ActivityInstance> activities)
         {
-            if (activity.Payload == string.Empty)
+            var activitiesDto = new List<ActivityDto>();
+
+            foreach (var activity in activities)
             {
-                return $"{activity.Name}";
+                var activityDto = new ActivityDto
+                {
+                    Id = activity.Id,
+                    Name = activity.Name,
+                    Payload = activity.Payload,
+                    OrderNo = activity.OrderNo,
+                    IsCompleted = activity.IsCompleted,
+                };
+
+                activitiesDto.Add(activityDto);
             }
 
-            return $"{activity.Name} {activity.Payload}";
+            return activitiesDto;
         }
     }
 }

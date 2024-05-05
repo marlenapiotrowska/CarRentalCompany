@@ -7,8 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CarRentalCompany.API.Controllers
 {
     [ApiController]
-    [Route("carReceiptForm")]
-
+    [Route("forms")]
     public class CarReceiptFormController : ControllerBase
     {
         private readonly IReceiptFormService _service;

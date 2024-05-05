@@ -1,7 +1,6 @@
 ﻿using Autofac.Features.Indexed;
 using CarRentalCompany.Domain.Models;
 using CarRentalCompany.Domain.Repositories;
-using CarRentalCompany.Integration.Builders;
 using CarRentalCompany.Integration.Factories;
 
 namespace CarRentalCompany.Application.Services
@@ -13,7 +12,8 @@ namespace CarRentalCompany.Application.Services
         private readonly IActivityInstanceRepository _activityInstanceRepository;
         private readonly IActivityDefinitionRepository _activityDefinitionRepository;
 
-        public ReceiptFormService(IIndex<string, ICarReceiptFormFactory> carReceiptFormFactories, 
+        public ReceiptFormService(
+            IIndex<string, ICarReceiptFormFactory> carReceiptFormFactories, 
             IReceiptFormRepository formRepository, IActivityInstanceRepository activityInstanceRepository, 
             IActivityDefinitionRepository activityDefinitionRepository)
         {
@@ -23,26 +23,15 @@ namespace CarRentalCompany.Application.Services
             _activityDefinitionRepository = activityDefinitionRepository;
         }
 
-        public CarReceiptForm CreateNewCarReceiptForm(string brand, Guid clientId)
+        public CarReceiptForm CreateNewCarReceiptForm(string type, Guid clientId)
         {
-            var builder = new CarReceiptFormBuilder(brand, clientId);
-            var activities = _activityDefinitionRepository.GetForType(brand);
-            var form = _carReceiptFormFactories[brand].Apply(builder, activities);
+            var activities = _activityDefinitionRepository.GetForType(type);
+            var form = _carReceiptFormFactories[type].Apply(clientId, activities);
 
-            AddNewReceiptForm(form);
-            AddActivities(form.Activities);
+            _formRepository.Add(form);
+            _activityInstanceRepository.Add(form.Activities, form.Id);
 
             return form;
-        }
-
-        private void AddActivities(List<ActivityInstance> activities)
-        {
-            _activityInstanceRepository.Add(activities);
-        }
-
-        private void AddNewReceiptForm(CarReceiptForm receiptForm)
-        {
-            _formRepository.Add(receiptForm);
         }
     }
 }

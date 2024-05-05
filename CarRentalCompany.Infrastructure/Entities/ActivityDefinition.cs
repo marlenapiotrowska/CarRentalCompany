@@ -21,7 +21,7 @@ namespace CarRentalCompany.Infrastructure.Entities
             };
         }
 
-        public ActivityDefinitionDomain CreateViewModel()
+        public ActivityDefinitionDomain CreateDomainEntity()
         {
             return new ActivityDefinitionDomain(Id, Type, Name, OrderNo);
         }

@@ -13,14 +13,10 @@ namespace CarRentalCompany.Infrastructure.Repositories
             _context = context;
         }
 
-        public void Add(IEnumerable<ActivityInstance> activities)
+        public void Add(IEnumerable<ActivityInstance> activities, Guid formId)
         {
             var activitiesDb = activities
-                .Select(activity => ActivityInstanceDb.Create
-                    (activity.Id,
-                    activity.Payload,
-                    activity.ActivityDefinitionId,
-                    activity.ReceiptFormId));
+                .Select(a => ActivityInstanceDb.Create(a, formId));
 
             _context.ActivitiesInstances.AddRange(activitiesDb);
             _context.SaveChanges();

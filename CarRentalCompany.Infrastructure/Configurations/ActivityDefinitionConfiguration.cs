@@ -9,10 +9,6 @@ namespace CarRentalCompany.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<ActivityDefinition> builder)
         {
             builder
-                .Property(c => c.Name)
-                .IsRequired();
-
-            builder
                 .HasMany(d => d.Activities)
                 .WithOne(a => a.ActivityDefinition);
         }

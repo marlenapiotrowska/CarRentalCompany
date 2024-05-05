@@ -21,9 +21,9 @@
         public string Name { get; }
         public double OrderNo { get; private set; }
 
-        public ActivityInstance CreateInstance(Guid receiptFormId)
+        public ActivityInstance CreateInstance()
         {
-            return new ActivityInstance(Name, OrderNo, Id, receiptFormId);
+            return new ActivityInstance(Name, OrderNo);
         }
 
         public void Reorder()

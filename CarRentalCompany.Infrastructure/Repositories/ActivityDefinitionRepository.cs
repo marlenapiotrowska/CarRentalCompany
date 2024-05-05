@@ -17,7 +17,7 @@ namespace CarRentalCompany.Infrastructure.Repositories
             return _context.ActivitiesDefinitions
                 .Where(d => d.Type == type || d.Type == string.Empty)
                 .ToList()
-                .Select(d => d.CreateViewModel())
+                .Select(d => d.CreateDomainEntity())
                 .ToList();
         }
     }

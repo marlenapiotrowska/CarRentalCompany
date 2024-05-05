@@ -9,10 +9,6 @@ namespace CarRentalCompany.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<Client> builder)
         {
             builder
-                .Property(c => c.Name)
-                .IsRequired();
-
-            builder
                 .HasMany(c => c.ReceiptForms)
                 .WithOne(f => f.Client);
         }

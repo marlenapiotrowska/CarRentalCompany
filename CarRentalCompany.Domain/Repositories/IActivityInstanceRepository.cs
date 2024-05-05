@@ -4,6 +4,6 @@ namespace CarRentalCompany.Domain.Repositories
 {
     public interface IActivityInstanceRepository
     {
-        void Add(IEnumerable<ActivityInstance> activity);
+        void Add(IEnumerable<ActivityInstance> activity, Guid formId);
     }
 }

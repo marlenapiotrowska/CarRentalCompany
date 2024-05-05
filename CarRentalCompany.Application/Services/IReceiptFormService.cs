@@ -4,6 +4,6 @@ namespace CarRentalCompany.Application.Services
 {
     public interface IReceiptFormService
     {
-        CarReceiptForm CreateNewCarReceiptForm(string brand, Guid clientId);
+        CarReceiptForm CreateNewCarReceiptForm(string type, Guid clientId);
     }
 }

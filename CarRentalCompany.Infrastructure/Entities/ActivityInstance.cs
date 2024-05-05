@@ -12,21 +12,20 @@ namespace CarRentalCompany.Infrastructure.Entities
         public Guid ReceiptFormId { get; set; }
         public virtual ReceiptForm ReceiptForm { get; set; }
 
-        public static ActivityInstance Create(Guid id, string payload, Guid activityDefinitionId, Guid receiptFormId)
+        public static ActivityInstance Create(ActivityInstanceDomain activity, Guid formId)
         {
             return new ActivityInstance
             {
-                Id = id,
-                Payload = payload,
-                ActivityDefinitionId = activityDefinitionId,
-                ReceiptFormId = receiptFormId,
-                IsCompleted = false
+                Id = activity.Id,
+                Payload = activity.Payload,
+                ReceiptFormId = formId,
+                IsCompleted = activity.IsCompleted
             };
         }
 
         public ActivityInstanceDomain CreateViewModel()
         {
-            return new ActivityInstanceDomain(Id, ActivityDefinition.Name, Payload, ActivityDefinition.OrderNo, IsCompleted, ActivityDefinitionId, ReceiptFormId);
+            return new ActivityInstanceDomain(Id, ActivityDefinition.Name, Payload, ActivityDefinition.OrderNo, IsCompleted);
         }
     }
 }

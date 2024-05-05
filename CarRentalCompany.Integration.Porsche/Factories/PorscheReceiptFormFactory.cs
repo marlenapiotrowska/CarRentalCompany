@@ -1,5 +1,4 @@
 ﻿using CarRentalCompany.Domain.Models;
-using CarRentalCompany.Integration.Builders;
 using CarRentalCompany.Integration.Factories;
 
 namespace CarRentalCompany.Integration.Porsche.Factories
@@ -9,16 +8,18 @@ namespace CarRentalCompany.Integration.Porsche.Factories
         public static string Type 
             => "Porsche";
 
-        public CarReceiptForm Apply(CarReceiptFormBuilder builder, IEnumerable<ActivityDefinition> activities)
+        public CarReceiptForm Apply(Guid clientId, IEnumerable<ActivityDefinition> activities)
         {
+            var form = new CarReceiptForm(Type, clientId);
+
             var activitiesInstances = activities
                 .OrderBy(a => a.OrderNo)
-                .Select(activity => activity.CreateInstance(builder.GetFormId()))
+                .Select(activity => activity.CreateInstance())
                 .ToList();
 
-            builder.AddActivities(activitiesInstances);
+            form.AddActivities(activitiesInstances);
 
-            return builder.Build();
+            return form;
         }
     }
 }

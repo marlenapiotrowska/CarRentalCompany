@@ -2,19 +2,17 @@
 {
     public class ActivityInstance
     {
-        public ActivityInstance(string name, double orderNo, Guid activityDefinitionId, Guid receiptFormId)
+        public ActivityInstance(string name, double orderNo)
         {
             Id = Guid.NewGuid();
             Name = name;
             Payload = string.Empty;
             OrderNo = orderNo;
             IsCompleted = false;
-            ActivityDefinitionId = activityDefinitionId;
-            ReceiptFormId = receiptFormId;
         }
 
-        public ActivityInstance(Guid id, string name, string payload, double orderNo, bool isCompleted, Guid activityDefinitionId, Guid receiptFormId) 
-            : this(name, orderNo, activityDefinitionId, receiptFormId)
+        public ActivityInstance(Guid id, string name, string payload, double orderNo, bool isCompleted)
+            : this(name, orderNo)
         {
             Id = id;
             Payload = payload;
@@ -26,7 +24,5 @@
         public string Payload { get; }
         public double OrderNo { get; }
         public bool IsCompleted { get; }
-        public Guid ActivityDefinitionId { get; }
-        public Guid ReceiptFormId { get; }
     }
 }
