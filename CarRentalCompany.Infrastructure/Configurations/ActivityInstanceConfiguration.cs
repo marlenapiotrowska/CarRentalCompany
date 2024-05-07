@@ -9,11 +9,6 @@ namespace CarRentalCompany.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<ActivityInstance> builder)
         { 
             builder
-                .HasOne(a => a.ActivityDefinition)
-                .WithMany(d => d.Activities)
-                .HasForeignKey(a => a.ActivityDefinitionId);
-
-            builder
                 .HasOne(a => a.ReceiptForm)
                 .WithMany(f => f.Activities)
                 .HasForeignKey(a => a.ReceiptFormId);

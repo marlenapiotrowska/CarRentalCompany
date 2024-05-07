@@ -5,10 +5,9 @@ namespace CarRentalCompany.Infrastructure.Entities
     public class ActivityInstance
     {
         public Guid Id { get; set; }
+        public string Name { get; set; }
         public string Payload { get; set; }
         public bool IsCompleted { get; set; }
-        public Guid ActivityDefinitionId { get; set; }
-        public virtual ActivityDefinition ActivityDefinition { get; set; }
         public Guid ReceiptFormId { get; set; }
         public virtual ReceiptForm ReceiptForm { get; set; }
 
@@ -17,15 +16,11 @@ namespace CarRentalCompany.Infrastructure.Entities
             return new ActivityInstance
             {
                 Id = activity.Id,
+                Name = activity.Name,
                 Payload = activity.Payload,
                 ReceiptFormId = formId,
                 IsCompleted = activity.IsCompleted
             };
-        }
-
-        public ActivityInstanceDomain CreateViewModel()
-        {
-            return new ActivityInstanceDomain(Id, ActivityDefinition.Name, Payload, ActivityDefinition.OrderNo, IsCompleted);
         }
     }
 }

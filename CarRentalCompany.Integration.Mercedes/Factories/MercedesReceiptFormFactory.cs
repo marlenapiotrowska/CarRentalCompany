@@ -7,16 +7,14 @@ namespace CarRentalCompany.Integration.Mercedes.Factories
     {
         public static string Type
             => "Mercedes";
+        private List<ActivityInstance> _activities = [];
 
-        public CarReceiptForm Apply(Guid clientId, IEnumerable<ActivityDefinition> activities)
+        public CarReceiptForm Apply(CarReceiptForm form)
         {
-            var form = new CarReceiptForm(Type, clientId);
-            var activitiesInstances = activities
-                .OrderBy(a => a.OrderNo)
-                .Select(activity => activity.CreateInstance())
-                .ToList();
+            _activities.Add(new ActivityInstance("Parking sensor condition", 4.1));
+            _activities.Add(new ActivityInstance("Wheel alignment", 4.2));
 
-            form.AddActivities(activitiesInstances);
+            form.AddActivities(_activities);
 
             return form;
         }

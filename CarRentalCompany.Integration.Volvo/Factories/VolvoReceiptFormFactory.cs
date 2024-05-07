@@ -7,16 +7,12 @@ namespace CarRentalCompany.Integration.Volvo.Factories
     {
         public static string Type 
             => "Volvo";
+        private List<ActivityInstance> _activities = [];
 
-        public CarReceiptForm Apply(Guid clientId, IEnumerable<ActivityDefinition> activities)
+        public CarReceiptForm Apply(CarReceiptForm form)
         {
-            var form = new CarReceiptForm(Type, clientId);
-            var activitiesInstances = activities
-                 .OrderBy(a => a.OrderNo)
-                 .Select(activity => activity.CreateInstance())
-                 .ToList();
-
-            form.AddActivities(activitiesInstances);
+            _activities.Add(new ActivityInstance("SteeringWheel washed manually", 7));
+            form.AddActivities(_activities);
 
             return form;
         }
