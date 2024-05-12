@@ -20,10 +20,10 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
         builder.RegisterApplication();
         builder.RegisterInfrastructure();
         builder.RegisterType<CarReceiptFormDtoFactory>().As<ICarReceiptFormDtoFactory>().InstancePerLifetimeScope();
-        builder.RegisterType<CarReceiptFormFactory>().Keyed<ICarReceiptFormFactory>(CarReceiptFormFactory.Type);
-        builder.RegisterType<MercedesReceiptFormFactory>().Keyed<ICarReceiptFormFactory>(MercedesReceiptFormFactory.Type);
-        builder.RegisterType<PorscheReceiptFormFactory>().Keyed<ICarReceiptFormFactory>(PorscheReceiptFormFactory.Type);
-        builder.RegisterType<VolvoReceiptFormFactory>().Keyed<ICarReceiptFormFactory>(VolvoReceiptFormFactory.Type);
+        builder.RegisterType<CarReceiptFormIntegrator>().Keyed<ICarReceiptFormIntegrator>(CarReceiptFormIntegrator.Type);
+        builder.RegisterType<MercedesReceiptFormIntegrator>().Keyed<ICarReceiptFormIntegrator>(MercedesReceiptFormIntegrator.Type);
+        builder.RegisterType<PorscheReceiptFormIntegrator>().Keyed<ICarReceiptFormIntegrator>(PorscheReceiptFormIntegrator.Type);
+        builder.RegisterType<VolvoReceiptFormIntegrator>().Keyed<ICarReceiptFormIntegrator>(VolvoReceiptFormIntegrator.Type);
     });
 
 builder.Services.AddControllers();

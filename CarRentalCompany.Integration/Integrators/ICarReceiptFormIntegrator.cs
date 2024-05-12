@@ -2,8 +2,8 @@
 
 namespace CarRentalCompany.Integration.Factories
 {
-    public interface ICarReceiptFormFactory
+    public interface ICarReceiptFormIntegrator
     {
-        CarReceiptForm Apply(CarReceiptForm form);
+        void Apply(CarReceiptForm form);
     }
 }

@@ -24,12 +24,9 @@
         public IReadOnlyList<ActivityInstance> Activities
             => _activites;
 
-        public void AddActivities(IEnumerable<ActivityInstance> activities)
+        public void AddActivity(ActivityInstance activity)
         {
-            foreach (var activity in activities)
-            {
-                _activites.Add(activity);
-            }
+            _activites.Add(activity);
         }
     }
 }

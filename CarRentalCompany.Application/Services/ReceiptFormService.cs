@@ -7,12 +7,12 @@ namespace CarRentalCompany.Application.Services
 {
     internal class ReceiptFormService : IReceiptFormService
     {
-        private readonly IIndex<string, ICarReceiptFormFactory> _carReceiptFormFactories;
+        private readonly IIndex<string, ICarReceiptFormIntegrator> _carReceiptFormFactories;
         private readonly IReceiptFormRepository _formRepository;
         private readonly IActivityInstanceRepository _activityInstanceRepository;
 
         public ReceiptFormService(
-            IIndex<string, ICarReceiptFormFactory> carReceiptFormFactories, 
+            IIndex<string, ICarReceiptFormIntegrator> carReceiptFormFactories, 
             IReceiptFormRepository formRepository, IActivityInstanceRepository activityInstanceRepository)
         {
             _carReceiptFormFactories = carReceiptFormFactories;
@@ -23,11 +23,11 @@ namespace CarRentalCompany.Application.Services
         public CarReceiptForm CreateNewCarReceiptForm(string type, Guid clientId)
         {
             var form = new CarReceiptForm(type, clientId);
-            var formWithDefaultActivities = _carReceiptFormFactories[string.Empty].Apply(form);
-            var formWithSpecificActivities = AddSpecificActivities(type, formWithDefaultActivities);
+            _carReceiptFormFactories[string.Empty].Apply(form);
+            AddSpecificActivities(type, form);
 
-            _formRepository.Add(formWithSpecificActivities);
-            _activityInstanceRepository.Add(formWithSpecificActivities.Activities, formWithSpecificActivities.Id);
+            _formRepository.Add(form);
+            _activityInstanceRepository.Add(form.Activities, form.Id);
 
             return form;
         }
@@ -36,7 +36,7 @@ namespace CarRentalCompany.Application.Services
         {
             if (!string.IsNullOrEmpty(type))
             {
-                return _carReceiptFormFactories[type].Apply(formWithDefaultActivities);
+                _carReceiptFormFactories[type].Apply(formWithDefaultActivities);
             }
 
             return formWithDefaultActivities;
