@@ -1,27 +1,45 @@
-﻿using CarRentalCompany.Application.Builders;
-using CarRentalCompany.Application.Repositories;
-using CarRentalCompany.Domain.Models.CarBrands;
+﻿using Autofac.Features.Indexed;
+using CarRentalCompany.Domain.Models;
+using CarRentalCompany.Domain.Repositories;
+using CarRentalCompany.Integration.Factories;
 
 namespace CarRentalCompany.Application.Services
 {
     internal class ReceiptFormService : IReceiptFormService
     {
-        private readonly IReceiptFormRepository _repository;
+        private readonly IIndex<string, ICarReceiptFormIntegrator> _carReceiptFormFactories;
+        private readonly IReceiptFormRepository _formRepository;
+        private readonly IActivityInstanceRepository _activityInstanceRepository;
 
-        public ReceiptFormService(IReceiptFormRepository repository)
+        public ReceiptFormService(
+            IIndex<string, ICarReceiptFormIntegrator> carReceiptFormFactories, 
+            IReceiptFormRepository formRepository, IActivityInstanceRepository activityInstanceRepository)
         {
-            _repository = repository;
+            _carReceiptFormFactories = carReceiptFormFactories;
+            _formRepository = formRepository;
+            _activityInstanceRepository = activityInstanceRepository;
         }
 
-        public void AddNewReceiptForm(ICarReceiptForm receiptForm, Guid clientId)
+        public CarReceiptForm CreateNewCarReceiptForm(string type, Guid clientId)
         {
-            _repository.Add(receiptForm, clientId);
+            var form = new CarReceiptForm(type, clientId);
+            _carReceiptFormFactories[string.Empty].Apply(form);
+            AddSpecificActivities(type, form);
+
+            _formRepository.Add(form);
+            _activityInstanceRepository.Add(form.Activities, form.Id);
+
+            return form;
         }
 
-        public void CreateEmptyReceiptForm(IReceiptFormBuilder builder)
+        private CarReceiptForm AddSpecificActivities(string type, CarReceiptForm formWithDefaultActivities)
         {
-            builder.CreateEmpty();
-            builder.SaveResult();
+            if (!string.IsNullOrEmpty(type))
+            {
+                _carReceiptFormFactories[type].Apply(formWithDefaultActivities);
+            }
+
+            return formWithDefaultActivities;
         }
     }
 }

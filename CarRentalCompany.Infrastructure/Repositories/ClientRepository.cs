@@ -1,5 +1,5 @@
-﻿using CarRentalCompany.Application.Repositories;
-using CarRentalCompany.Domain.Models;
+﻿using CarRentalCompany.Domain.Models;
+using CarRentalCompany.Domain.Repositories;
 
 namespace CarRentalCompany.Infrastructure.Repositories
 {

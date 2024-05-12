@@ -1,11 +1,9 @@
-﻿using CarRentalCompany.Application.Builders;
-using CarRentalCompany.Domain.Models.CarBrands;
+﻿using CarRentalCompany.Domain.Models;
 
 namespace CarRentalCompany.Application.Services
 {
     public interface IReceiptFormService
     {
-        void CreateEmptyReceiptForm(IReceiptFormBuilder builder);
-        void AddNewReceiptForm(ICarReceiptForm receiptForm, Guid clientId);
+        CarReceiptForm CreateNewCarReceiptForm(string type, Guid clientId);
     }
 }
