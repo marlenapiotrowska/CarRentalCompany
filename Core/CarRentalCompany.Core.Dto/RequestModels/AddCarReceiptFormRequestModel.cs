@@ -1,4 +1,4 @@
-﻿namespace CarRentalCompany.API.Objects.RequestModels
+﻿namespace CarRentalCompany.Core.Dto.RequestModels
 {
     public class AddCarReceiptFormRequestModel
     {

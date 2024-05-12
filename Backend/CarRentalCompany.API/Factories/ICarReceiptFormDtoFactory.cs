@@ -1,4 +1,4 @@
-﻿using CarRentalCompany.API.Objects.ResponseModels;
+﻿using CarRentalCompany.Core.Dto.ResponseModels;
 using CarRentalCompany.Domain.Models;
 
 namespace CarRentalCompany.API.Factories

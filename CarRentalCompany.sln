@@ -3,21 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalCompany.Domain", "CarRentalCompany.Domain\CarRentalCompany.Domain.csproj", "{FB595BC7-20E2-4F0A-ACA3-9F7C48CF848F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalCompany.Domain", "Backend\CarRentalCompany.Domain\CarRentalCompany.Domain.csproj", "{FB595BC7-20E2-4F0A-ACA3-9F7C48CF848F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalCompany.Infrastructure", "CarRentalCompany.Infrastructure\CarRentalCompany.Infrastructure.csproj", "{B09BAFEB-A1DC-4440-B7D7-88C415B4F8AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalCompany.Infrastructure", "Backend\CarRentalCompany.Infrastructure\CarRentalCompany.Infrastructure.csproj", "{B09BAFEB-A1DC-4440-B7D7-88C415B4F8AE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalCompany.API", "CarRentalCompany.API\CarRentalCompany.API.csproj", "{CC2C83DD-5277-4FF7-9251-93B9E446BBCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalCompany.API", "Backend\CarRentalCompany.API\CarRentalCompany.API.csproj", "{CC2C83DD-5277-4FF7-9251-93B9E446BBCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalCompany.Integration", "CarRentalCompany.Integration\CarRentalCompany.Integration.csproj", "{1C5716F7-BD0C-44B2-9536-A2EE24B8ED8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalCompany.Integration", "Backend\CarRentalCompany.Integration\CarRentalCompany.Integration.csproj", "{1C5716F7-BD0C-44B2-9536-A2EE24B8ED8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalCompany.Integration.Mercedes", "CarRentalCompany.Integration.Mercedes\CarRentalCompany.Integration.Mercedes.csproj", "{90B41CAB-8E1D-44F3-96FF-940605F6DF77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalCompany.Integration.Mercedes", "Backend\CarRentalCompany.Integration.Mercedes\CarRentalCompany.Integration.Mercedes.csproj", "{90B41CAB-8E1D-44F3-96FF-940605F6DF77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalCompany.Integration.Volvo", "CarRentalCompany.Integration.Volvo\CarRentalCompany.Integration.Volvo.csproj", "{EEFDA0A6-6735-4A43-88EE-208876673302}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalCompany.Integration.Volvo", "Backend\CarRentalCompany.Integration.Volvo\CarRentalCompany.Integration.Volvo.csproj", "{EEFDA0A6-6735-4A43-88EE-208876673302}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalCompany.Integration.Porsche", "CarRentalCompany.Integration.Porsche\CarRentalCompany.Integration.Porsche.csproj", "{22F370D0-BE41-4B52-87A3-BCB0B8245BA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalCompany.Integration.Porsche", "Backend\CarRentalCompany.Integration.Porsche\CarRentalCompany.Integration.Porsche.csproj", "{22F370D0-BE41-4B52-87A3-BCB0B8245BA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalCompany.Application", "CarRentalCompany.Application\CarRentalCompany.Application.csproj", "{6B27006E-5EF5-463E-A552-32DA4B0D3EFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalCompany.Application", "Backend\CarRentalCompany.Application\CarRentalCompany.Application.csproj", "{6B27006E-5EF5-463E-A552-32DA4B0D3EFB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{0005687C-9CD0-4BEB-9130-61CFE672F122}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{5C97DA55-EBBA-4CCC-8F77-19FA3D615DED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalCompany.Core.Dto", "Core\CarRentalCompany.Core.Dto\CarRentalCompany.Core.Dto.csproj", "{AFF09BD1-230F-4FAE-A845-FEB7B4354F3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,9 +63,24 @@ Global
 		{6B27006E-5EF5-463E-A552-32DA4B0D3EFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B27006E-5EF5-463E-A552-32DA4B0D3EFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B27006E-5EF5-463E-A552-32DA4B0D3EFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFF09BD1-230F-4FAE-A845-FEB7B4354F3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFF09BD1-230F-4FAE-A845-FEB7B4354F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFF09BD1-230F-4FAE-A845-FEB7B4354F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFF09BD1-230F-4FAE-A845-FEB7B4354F3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FB595BC7-20E2-4F0A-ACA3-9F7C48CF848F} = {0005687C-9CD0-4BEB-9130-61CFE672F122}
+		{B09BAFEB-A1DC-4440-B7D7-88C415B4F8AE} = {0005687C-9CD0-4BEB-9130-61CFE672F122}
+		{CC2C83DD-5277-4FF7-9251-93B9E446BBCD} = {0005687C-9CD0-4BEB-9130-61CFE672F122}
+		{1C5716F7-BD0C-44B2-9536-A2EE24B8ED8E} = {0005687C-9CD0-4BEB-9130-61CFE672F122}
+		{90B41CAB-8E1D-44F3-96FF-940605F6DF77} = {0005687C-9CD0-4BEB-9130-61CFE672F122}
+		{EEFDA0A6-6735-4A43-88EE-208876673302} = {0005687C-9CD0-4BEB-9130-61CFE672F122}
+		{22F370D0-BE41-4B52-87A3-BCB0B8245BA8} = {0005687C-9CD0-4BEB-9130-61CFE672F122}
+		{6B27006E-5EF5-463E-A552-32DA4B0D3EFB} = {0005687C-9CD0-4BEB-9130-61CFE672F122}
+		{AFF09BD1-230F-4FAE-A845-FEB7B4354F3B} = {5C97DA55-EBBA-4CCC-8F77-19FA3D615DED}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3550118C-7C21-45DB-8F5C-12B30ABC0055}

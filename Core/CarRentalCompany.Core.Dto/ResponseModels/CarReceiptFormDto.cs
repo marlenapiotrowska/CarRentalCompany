@@ -1,4 +1,4 @@
-﻿namespace CarRentalCompany.API.Objects.ResponseModels
+﻿namespace CarRentalCompany.Core.Dto.ResponseModels
 {
     public class CarReceiptFormDto
     {

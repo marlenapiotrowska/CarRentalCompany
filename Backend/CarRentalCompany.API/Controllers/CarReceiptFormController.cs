@@ -1,7 +1,7 @@
 ﻿using CarRentalCompany.API.Factories;
-using CarRentalCompany.API.Objects.RequestModels;
-using CarRentalCompany.API.Objects.ResponseModels;
 using CarRentalCompany.Application.Services;
+using CarRentalCompany.Core.Dto.RequestModels;
+using CarRentalCompany.Core.Dto.ResponseModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarRentalCompany.API.Controllers
