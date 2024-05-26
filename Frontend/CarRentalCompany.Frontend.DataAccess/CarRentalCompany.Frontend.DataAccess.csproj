@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Http\" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\CarRentalCompany.Core.Dto\CarRentalCompany.Core.Dto.csproj" />
+    <ProjectReference Include="..\CarRentalCompany.Frontend.Domain\CarRentalCompany.Frontend.Domain.csproj" />
   </ItemGroup>
 
 </Project>

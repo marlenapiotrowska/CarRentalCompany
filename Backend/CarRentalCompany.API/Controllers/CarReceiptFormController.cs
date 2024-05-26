@@ -20,7 +20,8 @@ namespace CarRentalCompany.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CarReceiptFormDto>> AddCarReceiptForm([FromBody] AddCarReceiptFormRequestModel requestModel)
+        [Route("actions/create")]
+        public async Task<ActionResult<CarReceiptFormDto>> CreateCarReceiptForm([FromBody] CreateCarReceiptFormRequestModel requestModel)
         {
             var form = _service.CreateNewCarReceiptForm(requestModel.Type, requestModel.ClientId);
 

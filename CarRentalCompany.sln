@@ -27,11 +27,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalCompany.Core.Dto",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{B1BF792C-60C6-4676-B7CE-5F81AB2E18CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalCompany.Frontend.DataAccess", "Frontend\CarRentalCompany.Frontend.DataAccess\CarRentalCompany.Frontend.DataAccess.csproj", "{4F165029-BADE-48B6-902B-260789E0E8F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalCompany.Frontend.DataAccess", "Frontend\CarRentalCompany.Frontend.DataAccess\CarRentalCompany.Frontend.DataAccess.csproj", "{4F165029-BADE-48B6-902B-260789E0E8F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalCompany.Frontend.Domain", "Frontend\CarRentalCompany.Frontend.Domain\CarRentalCompany.Frontend.Domain.csproj", "{AEF8BC23-AB79-4751-96D9-0C177A2544D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalCompany.Frontend.Domain", "Frontend\CarRentalCompany.Frontend.Domain\CarRentalCompany.Frontend.Domain.csproj", "{AEF8BC23-AB79-4751-96D9-0C177A2544D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalCompany.Frontend.Presentation", "Frontend\CarRentalCompany.Frontend.Presentation\CarRentalCompany.Frontend.Presentation.csproj", "{315D8DAC-0EED-4999-B700-65E7B4FA7604}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalCompany.Frontend.Presentation", "Frontend\CarRentalCompany.Frontend.Presentation\CarRentalCompany.Frontend.Presentation.csproj", "{F9EF420F-2B61-4419-83A8-35548220E623}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,10 +83,10 @@ Global
 		{AEF8BC23-AB79-4751-96D9-0C177A2544D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEF8BC23-AB79-4751-96D9-0C177A2544D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEF8BC23-AB79-4751-96D9-0C177A2544D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{315D8DAC-0EED-4999-B700-65E7B4FA7604}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{315D8DAC-0EED-4999-B700-65E7B4FA7604}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{315D8DAC-0EED-4999-B700-65E7B4FA7604}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{315D8DAC-0EED-4999-B700-65E7B4FA7604}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9EF420F-2B61-4419-83A8-35548220E623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9EF420F-2B61-4419-83A8-35548220E623}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9EF420F-2B61-4419-83A8-35548220E623}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9EF420F-2B61-4419-83A8-35548220E623}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,7 +103,7 @@ Global
 		{AFF09BD1-230F-4FAE-A845-FEB7B4354F3B} = {5C97DA55-EBBA-4CCC-8F77-19FA3D615DED}
 		{4F165029-BADE-48B6-902B-260789E0E8F8} = {B1BF792C-60C6-4676-B7CE-5F81AB2E18CA}
 		{AEF8BC23-AB79-4751-96D9-0C177A2544D5} = {B1BF792C-60C6-4676-B7CE-5F81AB2E18CA}
-		{315D8DAC-0EED-4999-B700-65E7B4FA7604} = {B1BF792C-60C6-4676-B7CE-5F81AB2E18CA}
+		{F9EF420F-2B61-4419-83A8-35548220E623} = {B1BF792C-60C6-4676-B7CE-5F81AB2E18CA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3550118C-7C21-45DB-8F5C-12B30ABC0055}
