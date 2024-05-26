@@ -38,7 +38,7 @@ namespace CarRentalCompany.Frontend.Presentation.Views.Forms
         private static void DisplayResult(ExecutionResultGeneric<CarReceiptFormDto> createForm, IEnumerable<ActivityDto> activities)
         {
             Console.WriteLine($"Form type: {createForm.Payload.Type}" +
-                $"\n Activities:");
+                $"\nActivities:");
 
             foreach (var activity in activities)
             {

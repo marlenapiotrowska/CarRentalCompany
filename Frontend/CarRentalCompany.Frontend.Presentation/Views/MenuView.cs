@@ -24,6 +24,7 @@ namespace CarRentalCompany.Frontend.Presentation.Views
                     "\n[ESC] To quit");
 
                 var pressedKey = Console.ReadKey();
+                Console.ReadLine();
 
                 switch (pressedKey.Key)
                 {
@@ -36,7 +37,9 @@ namespace CarRentalCompany.Frontend.Presentation.Views
                         wasExitKeyPressed = true;
                         break;
 
-                    default: continue;
+                    default:
+                        Console.WriteLine("You entered an invalid value.");
+                        continue;
                 }
             }
         }

@@ -19,7 +19,6 @@ namespace CarRentalCompany.Frontend.Presentation.Views.Forms.Components
 
             while (!wasExitKeyPressed)
             {
-                Console.Clear();
                 Console.WriteLine("Select client:");
                 foreach (var client in _clients)
                 {

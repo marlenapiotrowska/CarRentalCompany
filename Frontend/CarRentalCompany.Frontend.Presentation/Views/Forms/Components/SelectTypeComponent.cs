@@ -11,7 +11,6 @@ namespace CarRentalCompany.Frontend.Presentation.Views.Forms.Components
 
             while (!wasExitKeyPressed)
             {
-                Console.Clear();
                 Console.WriteLine("Select form type:");
                 Console.WriteLine
                     ("\n[1] Basic form" +
@@ -43,7 +42,9 @@ namespace CarRentalCompany.Frontend.Presentation.Views.Forms.Components
                         result = "Volvo";
                         break;
 
-                    default: continue;
+                    default:
+                        Console.WriteLine("You entered an invalid value.");
+                        continue;
                 }
 
                 break;
