@@ -6,7 +6,7 @@ using CarRentalCompany.Frontend.Domain.ValueObjects;
 
 namespace CarRentalCompany.Frontend.DataAccess
 {
-    public class CarRentalClient : RequestService, ICarReceiptFormRepository
+    public class CarRentalClient : RequestService, ICarReceiptFormRepository, IClientRepository
     {
         private const string _apiPath = "http://localhost:5251";
 
@@ -24,6 +24,11 @@ namespace CarRentalCompany.Frontend.DataAccess
             };
 
             return await SendAsync(request);
+        }
+
+        public Task<ExecutionResultGeneric<IEnumerable<ClientDto>>> GetAllClients()
+        {
+            throw new NotImplementedException();
         }
     }
 }
