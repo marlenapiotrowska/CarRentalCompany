@@ -3,8 +3,8 @@ using CarRentalCompany.Domain.Models;
 
 namespace CarRentalCompany.API.Factories
 {
-    public interface ICarReceiptFormDtoFactory
+    public interface IClientDtoFactory
     {
-        CarReceiptFormDto Create(CarReceiptForm form); 
+        IEnumerable<ClientDto> Create(IEnumerable<Client> clients); 
     }
 }

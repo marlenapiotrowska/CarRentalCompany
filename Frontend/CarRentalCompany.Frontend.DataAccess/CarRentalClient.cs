@@ -14,7 +14,7 @@ namespace CarRentalCompany.Frontend.DataAccess
         {
             var request = new Request<CreateCarReceiptFormRequestModel, CarReceiptFormDto>()
             {
-                Path = $"{_apiPath}/forms/actions/create",
+                Path = $"{_apiPath}/forms",
                 Method = HttpMethod.Post,
                 Content = new CreateCarReceiptFormRequestModel()
                 {
@@ -26,9 +26,15 @@ namespace CarRentalCompany.Frontend.DataAccess
             return await SendAsync(request);
         }
 
-        public Task<ExecutionResultGeneric<IEnumerable<ClientDto>>> GetAllClients()
+        public async Task<ExecutionResultGeneric<IEnumerable<ClientDto>>> GetAllClients()
         {
-            throw new NotImplementedException();
+            var request = new Request<HttpRequestMessage, IEnumerable<ClientDto>>()
+            {
+                Path = $"{_apiPath}/clients",
+                Method = HttpMethod.Get,
+            };
+
+            return await SendAsync(request);
         }
     }
 }

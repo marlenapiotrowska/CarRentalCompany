@@ -19,10 +19,11 @@ namespace CarRentalCompany.Frontend.Presentation.Views.Forms.Components
 
             while (!wasExitKeyPressed)
             {
+                Console.Clear();
                 Console.WriteLine("Select client:");
                 foreach (var client in _clients)
                 {
-                    Console.WriteLine($"{_clients.ToList().IndexOf(client) + 1} {client.Name}");
+                    Console.WriteLine($"[{_clients.ToList().IndexOf(client) + 1}] {client.Name}");
                 }
 
                 if (!int.TryParse(Console.ReadLine(), out int clientIndex))
@@ -39,6 +40,8 @@ namespace CarRentalCompany.Frontend.Presentation.Views.Forms.Components
                     Console.WriteLine("You entered an invalid value.");
                     continue;
                 }
+
+                break;
             }
 
             return selectedClient;

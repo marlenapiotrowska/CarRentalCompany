@@ -28,19 +28,24 @@ namespace CarRentalCompany.Frontend.Presentation.Views.Forms
 
             var createForm = await _formRepository.CreateCarReceiptForm(selectedType, selectedClient.Id);
             ValidateSuccess(createForm);
+            var activities = createForm.Payload.Activities
+                .OrderBy(a => a.OrderNo);
 
-            DisplayResult(createForm, createForm.Payload.Activities);
+            Console.Clear();
+            DisplayResult(createForm, activities);
         }
 
         private static void DisplayResult(ExecutionResultGeneric<CarReceiptFormDto> createForm, IEnumerable<ActivityDto> activities)
         {
-            _ = activities.OrderBy(a => a.OrderNo);
+            Console.WriteLine($"Form type: {createForm.Payload.Type}" +
+                $"\n Activities:");
 
-            Console.WriteLine($"{createForm.Payload.Type}");
             foreach (var activity in activities)
             {
-                Console.WriteLine($"{activity.OrderNo} {activity.Name}");
+                Console.WriteLine($"[{activities.ToList().IndexOf(activity) + 1}] {activity.Name}");
             }
+
+            Console.ReadKey();
         }
 
         private static void ValidateSuccess<TOutput>(ExecutionResultGeneric<TOutput> action)

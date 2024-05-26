@@ -2,7 +2,7 @@
 
 namespace CarRentalCompany.Frontend.Presentation.Views.Forms.Components
 {
-    internal class SelectTypeComponent : Component<string>
+    internal class SelectTypeComponent : Component<string?>
     {
         public override string Render()
         {
@@ -11,16 +11,17 @@ namespace CarRentalCompany.Frontend.Presentation.Views.Forms.Components
 
             while (!wasExitKeyPressed)
             {
+                Console.Clear();
                 Console.WriteLine("Select form type:");
                 Console.WriteLine
                     ("\n[1] Basic form" +
                     "\n[2] Mercedes form" +
                     "\n[3] Porsche form" +
-                    "\n[4] Volvo form" +
-                    "\n[ESC] To quit");
+                    "\n[4] Volvo form");
 
                 var pressedKey = Console.ReadKey();
-                
+                Console.ReadLine();
+
                 switch (pressedKey.Key)
                 {
                     case ConsoleKey.D1:
@@ -42,12 +43,10 @@ namespace CarRentalCompany.Frontend.Presentation.Views.Forms.Components
                         result = "Volvo";
                         break;
 
-                    case ConsoleKey.Escape:
-                        wasExitKeyPressed = true;
-                        break;
-
                     default: continue;
                 }
+
+                break;
             }
 
             return result;

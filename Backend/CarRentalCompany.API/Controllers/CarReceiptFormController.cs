@@ -1,4 +1,4 @@
-﻿using CarRentalCompany.API.Factories;
+﻿using CarRentalCompany.API.Factories.Interfaces;
 using CarRentalCompany.Application.Services;
 using CarRentalCompany.Core.Dto.RequestModels;
 using CarRentalCompany.Core.Dto.ResponseModels;
@@ -20,7 +20,6 @@ namespace CarRentalCompany.API.Controllers
         }
 
         [HttpPost]
-        [Route("actions/create")]
         public async Task<ActionResult<CarReceiptFormDto>> CreateCarReceiptForm([FromBody] CreateCarReceiptFormRequestModel requestModel)
         {
             var form = _service.CreateNewCarReceiptForm(requestModel.Type, requestModel.ClientId);

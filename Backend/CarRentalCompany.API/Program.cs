@@ -1,6 +1,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using CarRentalCompany.API.Factories;
+using CarRentalCompany.API.Factories.Interfaces;
 using CarRentalCompany.Application;
 using CarRentalCompany.Infrastructure;
 using CarRentalCompany.Integration.Factories;
@@ -20,6 +21,7 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
         builder.RegisterApplication();
         builder.RegisterInfrastructure();
         builder.RegisterType<CarReceiptFormDtoFactory>().As<ICarReceiptFormDtoFactory>().InstancePerLifetimeScope();
+        builder.RegisterType<ClientDtoFactory>().As<IClientDtoFactory>().InstancePerLifetimeScope();
         builder.RegisterType<CarReceiptFormIntegrator>().Keyed<ICarReceiptFormIntegrator>(CarReceiptFormIntegrator.Type);
         builder.RegisterType<MercedesReceiptFormIntegrator>().Keyed<ICarReceiptFormIntegrator>(MercedesReceiptFormIntegrator.Type);
         builder.RegisterType<PorscheReceiptFormIntegrator>().Keyed<ICarReceiptFormIntegrator>(PorscheReceiptFormIntegrator.Type);
@@ -37,6 +39,5 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();
