@@ -1,5 +1,5 @@
 ﻿using CarRentalCompany.API.Factories.Interfaces;
-using CarRentalCompany.Application.Services;
+using CarRentalCompany.Application.Services.Interfaces;
 using CarRentalCompany.Core.Dto.RequestModels;
 using CarRentalCompany.Core.Dto.ResponseModels;
 using Microsoft.AspNetCore.Mvc;

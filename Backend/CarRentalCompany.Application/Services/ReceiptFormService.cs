@@ -1,4 +1,5 @@
 ﻿using Autofac.Features.Indexed;
+using CarRentalCompany.Application.Services.Interfaces;
 using CarRentalCompany.Domain.Models;
 using CarRentalCompany.Domain.Repositories;
 using CarRentalCompany.Integration.Factories;

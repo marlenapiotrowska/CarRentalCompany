@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using CarRentalCompany.Application.Services;
+using CarRentalCompany.Application.Services.Interfaces;
 
 namespace CarRentalCompany.Application
 {
@@ -16,6 +17,11 @@ namespace CarRentalCompany.Application
                .RegisterType<ReceiptFormService>()
                .As<IReceiptFormService>()
                .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<CarService>()
+                .As<ICarService>()
+                .InstancePerLifetimeScope();
         }
     }
 }
