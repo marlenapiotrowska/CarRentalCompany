@@ -11,6 +11,10 @@ namespace CarRentalCompany.Infrastructure.Configurations
             builder
                 .HasMany(c => c.ReceiptForms)
                 .WithOne(f => f.Client);
+
+            builder
+                .HasMany(c => c.Rentals)
+                .WithOne(r => r.Client);
         }
     }
 }
