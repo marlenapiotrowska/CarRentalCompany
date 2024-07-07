@@ -8,7 +8,7 @@ namespace CarRentalCompany.Infrastructure
     {
         public DbSet<ReceiptForm> ReceiptForms { get; set; }
         public DbSet<Client> Clients { get; set; }
-        public DbSet<ActivityInstance> Cars { get; set; }
+        public DbSet<Car> Cars { get; set; }
         public DbSet<Rental> Rentals { get; set; }
         public DbSet<ActivityInstance> ActivitiesInstances { get; set; }
 

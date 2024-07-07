@@ -31,12 +31,10 @@ namespace CarRentalCompany.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CarDto>> AddCar([FromBody] AddCarRequestModel request)
+        public async Task AddCar([FromBody] AddCarRequestModel request)
         {
             var input = new AddCarInput(request.Brand, request.Model, request.ProductionYear, request.Value, request.VIN, request.Color);
-            var addedCar = await _service.Add(input);
-
-            return _factory.Create(addedCar);
+            await _service.Add(input);
         }
 
         [HttpDelete]

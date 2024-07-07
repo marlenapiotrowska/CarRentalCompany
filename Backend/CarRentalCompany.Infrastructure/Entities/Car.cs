@@ -13,5 +13,21 @@
         public DateTime AdditionDate { get; set; }
         public virtual ICollection<Rental> Rentals { get; set; }
         public virtual ICollection<ReceiptForm> ReceiptForms { get; set; }
+
+        public static Car Create(Guid id, string brand, string model, int productionYear, int value, string vin, string color, bool isAvailable, DateTime additionDate)
+        {
+            return new Car
+            {
+                Id = id,
+                Brand = brand,
+                Model = model,
+                ProductionYear = productionYear,
+                Value = value,
+                VIN = vin,
+                Color = color,
+                IsAvailable = isAvailable,
+                AdditionDate = additionDate
+            };
+        }
     }
 }

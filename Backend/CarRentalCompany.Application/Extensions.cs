@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using CarRentalCompany.Application.Factories;
+using CarRentalCompany.Application.Factories.Interfaces;
 using CarRentalCompany.Application.Services;
 using CarRentalCompany.Application.Services.Interfaces;
 
@@ -21,6 +23,11 @@ namespace CarRentalCompany.Application
             builder
                 .RegisterType<CarService>()
                 .As<ICarService>()
+                .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<CarDbFactory>()
+                .As<ICarDbFactory>()
                 .InstancePerLifetimeScope();
         }
     }
