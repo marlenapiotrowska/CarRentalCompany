@@ -2,7 +2,7 @@
 
 namespace CarRentalCompany.Application.Providers
 {
-    internal class TimeProvider : ITimeProvider
+    internal class Clock : IClock
     {
         public DateTime GetTime()
         {

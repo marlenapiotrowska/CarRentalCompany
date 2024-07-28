@@ -6,31 +6,14 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CarRentalCompany.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class AddRentalAndCarTables : Migration
+    public partial class AddRentalAndCarsTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_ActivitiesInstances_ReceiptForms_ReceiptFormId",
-                table: "ActivitiesInstances");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_ActivitiesInstances",
-                table: "ActivitiesInstances");
-
             migrationBuilder.DropColumn(
                 name: "FormType",
                 table: "ReceiptForms");
-
-            migrationBuilder.RenameTable(
-                name: "ActivitiesInstances",
-                newName: "ActivityInstance");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_ActivitiesInstances_ReceiptFormId",
-                table: "ActivityInstance",
-                newName: "IX_ActivityInstance_ReceiptFormId");
 
             migrationBuilder.AddColumn<Guid>(
                 name: "CarId",
@@ -46,13 +29,8 @@ namespace CarRentalCompany.Infrastructure.Migrations
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_ActivityInstance",
-                table: "ActivityInstance",
-                column: "Id");
-
             migrationBuilder.CreateTable(
-                name: "Car",
+                name: "Cars",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -67,7 +45,7 @@ namespace CarRentalCompany.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Car", x => x.Id);
+                    table.PrimaryKey("PK_Cars", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -85,9 +63,9 @@ namespace CarRentalCompany.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Rentals", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Rentals_Car_CarId",
+                        name: "FK_Rentals_Cars_CarId",
                         column: x => x.CarId,
-                        principalTable: "Car",
+                        principalTable: "Cars",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -114,18 +92,10 @@ namespace CarRentalCompany.Infrastructure.Migrations
                 column: "ClientId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_ActivityInstance_ReceiptForms_ReceiptFormId",
-                table: "ActivityInstance",
-                column: "ReceiptFormId",
-                principalTable: "ReceiptForms",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_ReceiptForms_Car_CarId",
+                name: "FK_ReceiptForms_Cars_CarId",
                 table: "ReceiptForms",
                 column: "CarId",
-                principalTable: "Car",
+                principalTable: "Cars",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
@@ -134,26 +104,18 @@ namespace CarRentalCompany.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_ActivityInstance_ReceiptForms_ReceiptFormId",
-                table: "ActivityInstance");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_ReceiptForms_Car_CarId",
+                name: "FK_ReceiptForms_Cars_CarId",
                 table: "ReceiptForms");
 
             migrationBuilder.DropTable(
                 name: "Rentals");
 
             migrationBuilder.DropTable(
-                name: "Car");
+                name: "Cars");
 
             migrationBuilder.DropIndex(
                 name: "IX_ReceiptForms_CarId",
                 table: "ReceiptForms");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_ActivityInstance",
-                table: "ActivityInstance");
 
             migrationBuilder.DropColumn(
                 name: "CarId",
@@ -163,34 +125,12 @@ namespace CarRentalCompany.Infrastructure.Migrations
                 name: "CreationDate",
                 table: "ReceiptForms");
 
-            migrationBuilder.RenameTable(
-                name: "ActivityInstance",
-                newName: "ActivitiesInstances");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_ActivityInstance_ReceiptFormId",
-                table: "ActivitiesInstances",
-                newName: "IX_ActivitiesInstances_ReceiptFormId");
-
             migrationBuilder.AddColumn<string>(
                 name: "FormType",
                 table: "ReceiptForms",
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_ActivitiesInstances",
-                table: "ActivitiesInstances",
-                column: "Id");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_ActivitiesInstances_ReceiptForms_ReceiptFormId",
-                table: "ActivitiesInstances",
-                column: "ReceiptFormId",
-                principalTable: "ReceiptForms",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using CarRentalCompany.Domain.Providers;
 using CarRentalCompany.Domain.Repositories;
 using CarRentalCompany.Infrastructure.Factories;
 using CarRentalCompany.Infrastructure.Factories.Interfaces;
@@ -34,11 +33,6 @@ namespace CarRentalCompany.Infrastructure
             builder
                 .RegisterType<CarFactory>()
                 .As<ICarFactory>()
-                .InstancePerLifetimeScope();
-
-            builder
-                .RegisterType<TimeProvider>()
-                .As<ITimeProvider>()
                 .InstancePerLifetimeScope();
         }
     }

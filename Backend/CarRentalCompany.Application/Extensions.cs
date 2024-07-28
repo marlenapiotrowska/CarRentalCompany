@@ -1,8 +1,10 @@
 ﻿using Autofac;
 using CarRentalCompany.Application.Factories;
 using CarRentalCompany.Application.Factories.Interfaces;
+using CarRentalCompany.Application.Providers;
 using CarRentalCompany.Application.Services;
 using CarRentalCompany.Application.Services.Interfaces;
+using CarRentalCompany.Domain.Providers;
 
 namespace CarRentalCompany.Application
 {
@@ -28,6 +30,11 @@ namespace CarRentalCompany.Application
             builder
                 .RegisterType<CarDbFactory>()
                 .As<ICarDbFactory>()
+                .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<Clock>()
+                .As<IClock>()
                 .InstancePerLifetimeScope();
         }
     }

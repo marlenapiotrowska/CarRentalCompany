@@ -46,7 +46,7 @@ namespace CarRentalCompany.Infrastructure.Migrations
 
                     b.HasIndex("ReceiptFormId");
 
-                    b.ToTable("ActivityInstance");
+                    b.ToTable("ActivitiesInstances");
                 });
 
             modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.Car", b =>
@@ -85,7 +85,7 @@ namespace CarRentalCompany.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Car");
+                    b.ToTable("Cars");
                 });
 
             modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.Client", b =>

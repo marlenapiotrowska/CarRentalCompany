@@ -9,9 +9,9 @@ namespace CarRentalCompany.Application.Factories
     internal class CarDbFactory : ICarDbFactory
     {
         private const int _minProductionYear = 1900;
-        private readonly ITimeProvider _timeProvider;
+        private readonly IClock _timeProvider;
 
-        public CarDbFactory(ITimeProvider timeProvider)
+        public CarDbFactory(IClock timeProvider)
         {
             _timeProvider = timeProvider;
         }

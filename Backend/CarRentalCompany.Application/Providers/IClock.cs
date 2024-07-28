@@ -1,6 +1,6 @@
 ﻿namespace CarRentalCompany.Domain.Providers
 {
-    public interface ITimeProvider
+    public interface IClock
     {
         DateTime GetTime();
     }

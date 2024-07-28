@@ -48,6 +48,11 @@ namespace CarRentalCompany.Infrastructure.Repositories
         {
             var cars = _context.Cars;
 
+            if (!cars.Any())
+            {
+                return Enumerable.Empty<Car>();
+            }
+
             return cars
                 .Select(car => _factory.Create(car))
                 .ToList();

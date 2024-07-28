@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRentalCompany.Infrastructure.Migrations
 {
     [DbContext(typeof(CarRentalCompanyDbContext))]
-    [Migration("20240707081646_AddRentalAndCarTables")]
-    partial class AddRentalAndCarTables
+    [Migration("20240707174428_AddRentalAndCarsTables")]
+    partial class AddRentalAndCarsTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,7 +49,7 @@ namespace CarRentalCompany.Infrastructure.Migrations
 
                     b.HasIndex("ReceiptFormId");
 
-                    b.ToTable("ActivityInstance");
+                    b.ToTable("ActivitiesInstances");
                 });
 
             modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.Car", b =>
@@ -88,7 +88,7 @@ namespace CarRentalCompany.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Car");
+                    b.ToTable("Cars");
                 });
 
             modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.Client", b =>
