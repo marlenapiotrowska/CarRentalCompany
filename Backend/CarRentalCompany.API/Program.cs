@@ -1,5 +1,6 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using CarRentalCompany.API;
 using CarRentalCompany.API.Factories;
 using CarRentalCompany.API.Factories.Interfaces;
 using CarRentalCompany.Application;
@@ -18,6 +19,7 @@ builder.Services
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
     .ConfigureContainer<ContainerBuilder>(builder =>
     {
+        builder.RegisterType<ErrorHandlingMiddleware>().InstancePerLifetimeScope();
         builder.RegisterApplication();
         builder.RegisterInfrastructure();
         builder.RegisterType<CarReceiptFormDtoFactory>().As<ICarReceiptFormDtoFactory>().InstancePerLifetimeScope();
@@ -33,6 +35,8 @@ builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
