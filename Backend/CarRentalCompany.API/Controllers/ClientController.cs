@@ -1,5 +1,6 @@
 ﻿using CarRentalCompany.API.Factories;
 using CarRentalCompany.Application.Services.Interfaces;
+using CarRentalCompany.Core.Dto.RequestModels;
 using CarRentalCompany.Core.Dto.ResponseModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,6 +27,12 @@ namespace CarRentalCompany.API.Controllers
             return _factory
                 .Create(clients)
                 .ToList();
+        }
+
+        [HttpPost]
+        public async Task Add([FromBody] AddClientRequestModel request)
+        {
+            await _service.Add(request.Name);
         }
     }
 }
