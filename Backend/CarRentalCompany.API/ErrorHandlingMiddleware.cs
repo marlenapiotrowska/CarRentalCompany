@@ -13,7 +13,9 @@ namespace CarRentalCompany.API
 			}
 			catch (Exception ex)
 			{
-				switch (ex)
+                context.Response.ContentType = "application/text/plain";
+
+                switch (ex)
 				{
                     case EntityNotFoundException:
                         context.Response.StatusCode = 404;
