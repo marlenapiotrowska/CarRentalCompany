@@ -19,12 +19,12 @@ namespace CarRentalCompany.Application.Services
         public async Task Add(string name)
         {
             var client = _factory.Create(name);
-            _repository.Add(client);
+            await _repository.Add(client);
         }
 
         public async Task<IEnumerable<Client>> GetAllClients()
         {
-            return _repository.GetAllClients();
+            return await _repository.GetAllClients();
         }
     }
 }

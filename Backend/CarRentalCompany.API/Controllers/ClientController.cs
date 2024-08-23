@@ -22,7 +22,7 @@ namespace CarRentalCompany.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ClientDto>>> GetAllClients()
         {
-            var clients = _service.GetAllClients();
+            var clients = await _service.GetAllClients();
 
             return _factory
                 .Create(clients)
@@ -30,9 +30,10 @@ namespace CarRentalCompany.API.Controllers
         }
 
         [HttpPost]
-        public async Task Add([FromBody] AddClientRequestModel request)
+        public async Task<IActionResult> Add([FromBody] AddClientRequestModel request)
         {
             await _service.Add(request.Name);
+            return Ok(true);
         }
     }
 }

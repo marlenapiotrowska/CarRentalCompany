@@ -4,8 +4,7 @@ namespace CarRentalCompany.Domain.Repositories
 {
     public interface IClientRepository
     {
-        void Add(Client client);
-        IEnumerable<Client> GetAllClients();
-
+        Task Add(Client client);
+        Task<IEnumerable<Client>> GetAllClients();
     }
 }
