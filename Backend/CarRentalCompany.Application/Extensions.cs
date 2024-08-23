@@ -36,6 +36,11 @@ namespace CarRentalCompany.Application
                 .RegisterType<Clock>()
                 .As<IClock>()
                 .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<ClientDbFactory>()
+                .As<IClientDbFactory>()
+                .InstancePerLifetimeScope();
         }
     }
 }
