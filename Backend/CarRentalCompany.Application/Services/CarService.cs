@@ -20,17 +20,17 @@ namespace CarRentalCompany.Application.Services
         public async Task Add(AddCarInput input)
         {
             var car = _factory.Create(input);
-            _repository.Add(car);
+            await _repository.Add(car);
         }
 
         public async Task Delete(Guid carId)
         {
-            _repository.Delete(carId);
+            await _repository.Delete(carId);
         }
 
         public async Task<IEnumerable<Car>> GetAll()
         {
-            return _repository.GetAll();
+            return await _repository.GetAll();
         }
     }
 }

@@ -2,6 +2,7 @@
 using CarRentalCompany.Domain.Repositories;
 using CarRentalCompany.Infrastructure.Exceptions;
 using CarRentalCompany.Infrastructure.Factories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using CarDb = CarRentalCompany.Infrastructure.Entities.Car;
 
 namespace CarRentalCompany.Infrastructure.Repositories
@@ -17,7 +18,7 @@ namespace CarRentalCompany.Infrastructure.Repositories
             _factory = factory;
         }
         
-        public void Add(Car car)
+        public async Task Add(Car car)
         {
             var carDb = CarDb.Create
                 (car.Id,
@@ -30,25 +31,26 @@ namespace CarRentalCompany.Infrastructure.Repositories
                 car.IsAvailable,
                 car.AdditionDate);
 
-            _context.Cars.Add(carDb);
-            _context.SaveChanges();
+            await _context.Cars.AddAsync(carDb);
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(Guid id)
+        public async Task Delete(Guid id)
         {
-            var carDb = _context.Cars
-                .SingleOrDefault(c => c.Id == id)
+            var carDb = await _context.Cars
+                .SingleOrDefaultAsync(c => c.Id == id)
                 ?? throw new EntityNotFoundException("car", id);
 
             _context.Cars.Remove(carDb);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<Car> GetAll()
+        public async Task<IEnumerable<Car>> GetAll()
         {
-            var cars = _context.Cars;
+            var cars = await _context.Cars
+                .ToListAsync();
 
-            if (!cars.Any())
+            if (cars.Count == 0)
             {
                 return Enumerable.Empty<Car>();
             }
@@ -58,10 +60,10 @@ namespace CarRentalCompany.Infrastructure.Repositories
                 .ToList();
         }
 
-        public Car GetById(Guid id)
+        public async Task<Car> GetById(Guid id)
         {
-            var carDb = _context.Cars
-                .SingleOrDefault(c => c.Id == id)
+            var carDb = await _context.Cars
+                .SingleOrDefaultAsync(c => c.Id == id)
                 ?? throw new EntityNotFoundException("car", id);
 
             return _factory.Create(carDb);
