@@ -46,46 +46,7 @@ namespace CarRentalCompany.Infrastructure.Migrations
 
                     b.HasIndex("ReceiptFormId");
 
-                    b.ToTable("ActivitiesInstances");
-                });
-
-            modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.Car", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("AdditionDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Brand")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsAvailable")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Model")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProductionYear")
-                        .HasColumnType("int");
-
-                    b.Property<string>("VIN")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Value")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cars");
+                    b.ToTable("ActivitiesInstances", (string)null);
                 });
 
             modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.Client", b =>
@@ -100,7 +61,7 @@ namespace CarRentalCompany.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clients");
+                    b.ToTable("Clients", (string)null);
                 });
 
             modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.ReceiptForm", b =>
@@ -109,52 +70,18 @@ namespace CarRentalCompany.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CarId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("ClientId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("FormType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CarId");
-
                     b.HasIndex("ClientId");
 
-                    b.ToTable("ReceiptForms");
-                });
-
-            modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.Rental", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CarId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ClientId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsEnded")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("RentalEndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("RentalStartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CarId");
-
-                    b.HasIndex("ClientId");
-
-                    b.ToTable("Rentals");
+                    b.ToTable("ReceiptForms", (string)null);
                 });
 
             modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.ActivityInstance", b =>
@@ -170,54 +97,18 @@ namespace CarRentalCompany.Infrastructure.Migrations
 
             modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.ReceiptForm", b =>
                 {
-                    b.HasOne("CarRentalCompany.Infrastructure.Entities.Car", "Car")
-                        .WithMany("ReceiptForms")
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CarRentalCompany.Infrastructure.Entities.Client", "Client")
                         .WithMany("ReceiptForms")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Car");
-
                     b.Navigation("Client");
-                });
-
-            modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.Rental", b =>
-                {
-                    b.HasOne("CarRentalCompany.Infrastructure.Entities.Car", "Car")
-                        .WithMany("Rentals")
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CarRentalCompany.Infrastructure.Entities.Client", "Client")
-                        .WithMany("Rentals")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Car");
-
-                    b.Navigation("Client");
-                });
-
-            modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.Car", b =>
-                {
-                    b.Navigation("ReceiptForms");
-
-                    b.Navigation("Rentals");
                 });
 
             modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.Client", b =>
                 {
                     b.Navigation("ReceiptForms");
-
-                    b.Navigation("Rentals");
                 });
 
             modelBuilder.Entity("CarRentalCompany.Infrastructure.Entities.ReceiptForm", b =>
