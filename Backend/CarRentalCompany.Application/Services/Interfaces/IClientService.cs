@@ -6,5 +6,6 @@ namespace CarRentalCompany.Application.Services.Interfaces
     {
         Task<IEnumerable<Client>> GetAllClients();
         Task Add(string name);
+        Task Delete(Guid clientId);
     }
 }

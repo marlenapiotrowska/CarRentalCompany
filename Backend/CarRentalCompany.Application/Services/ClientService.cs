@@ -22,6 +22,11 @@ namespace CarRentalCompany.Application.Services
             await _repository.Add(client);
         }
 
+        public async Task Delete(Guid clientId)
+        {
+            await _repository.Delete(clientId);
+        }
+
         public async Task<IEnumerable<Client>> GetAllClients()
         {
             return await _repository.GetAllClients();

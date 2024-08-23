@@ -35,5 +35,13 @@ namespace CarRentalCompany.API.Controllers
             await _service.Add(request.Name);
             return Ok(true);
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(Guid clientId)
+        {
+            await _service.Delete(clientId);
+
+            return Ok(true);
+        }
     }
 }
