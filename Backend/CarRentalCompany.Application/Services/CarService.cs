@@ -25,7 +25,7 @@ namespace CarRentalCompany.Application.Services
 
         public async Task Delete(Guid carId)
         {
-            _repository.GetById(carId);
+            _repository.Delete(carId);
         }
 
         public async Task<IEnumerable<Car>> GetAll()
