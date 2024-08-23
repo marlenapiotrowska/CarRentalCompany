@@ -16,6 +16,11 @@ namespace CarRentalCompany.Infrastructure.Configurations
             builder
                 .HasMany(f => f.Activities)
                 .WithOne(a => a.ReceiptForm);
+
+            builder
+                .HasOne(f => f.Car)
+                .WithMany(c => c.ReceiptForms)
+                .HasForeignKey(f => f.CarId);
         }
     }
 }

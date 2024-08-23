@@ -18,7 +18,7 @@ namespace CarRentalCompany.Infrastructure.Repositories
             var receiptForm = ReceiptForm
                 .Create
                 (carReceiptForm.Id,
-                carReceiptForm.Type,
+                Guid.NewGuid(),
                 carReceiptForm.ClientId);
 
             _context.ReceiptForms.Add(receiptForm);

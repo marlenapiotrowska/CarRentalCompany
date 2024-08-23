@@ -22,6 +22,7 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
         builder.RegisterInfrastructure();
         builder.RegisterType<CarReceiptFormDtoFactory>().As<ICarReceiptFormDtoFactory>().InstancePerLifetimeScope();
         builder.RegisterType<ClientDtoFactory>().As<IClientDtoFactory>().InstancePerLifetimeScope();
+        builder.RegisterType<CarDtoFactory>().As<ICarDtoFactory>().InstancePerLifetimeScope();
         builder.RegisterType<CarReceiptFormIntegrator>().Keyed<ICarReceiptFormIntegrator>(CarReceiptFormIntegrator.Type);
         builder.RegisterType<MercedesReceiptFormIntegrator>().Keyed<ICarReceiptFormIntegrator>(MercedesReceiptFormIntegrator.Type);
         builder.RegisterType<PorscheReceiptFormIntegrator>().Keyed<ICarReceiptFormIntegrator>(PorscheReceiptFormIntegrator.Type);

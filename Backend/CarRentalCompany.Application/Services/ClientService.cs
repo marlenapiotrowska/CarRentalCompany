@@ -1,4 +1,5 @@
-﻿using CarRentalCompany.Domain.Models;
+﻿using CarRentalCompany.Application.Services.Interfaces;
+using CarRentalCompany.Domain.Models;
 using CarRentalCompany.Domain.Repositories;
 
 namespace CarRentalCompany.Application.Services

@@ -3,17 +3,19 @@
     public class ReceiptForm
     {
         public Guid Id { get; set; }
-        public string FormType { get; set; }
+        public DateTime CreationDate { get; set; }
         public virtual Client Client { get; set; }
+        public virtual Car Car { get; set; }
         public Guid ClientId { get; set; }
+        public Guid CarId { get; set; }
         public ICollection<ActivityInstance> Activities { get; set; }
 
-        public static ReceiptForm Create(Guid id, string formType, Guid clientId)
+        public static ReceiptForm Create(Guid id, Guid carId, Guid clientId)
         {
             return new ReceiptForm
             {
                 Id = id,
-                FormType = formType,
+                CarId = carId,
                 ClientId = clientId
             };
         }

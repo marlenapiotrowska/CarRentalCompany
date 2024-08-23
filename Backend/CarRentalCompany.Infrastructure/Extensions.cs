@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using CarRentalCompany.Domain.Repositories;
+using CarRentalCompany.Infrastructure.Factories;
+using CarRentalCompany.Infrastructure.Factories.Interfaces;
 using CarRentalCompany.Infrastructure.Repositories;
 
 namespace CarRentalCompany.Infrastructure
@@ -21,6 +23,16 @@ namespace CarRentalCompany.Infrastructure
             builder
                 .RegisterType<ActivityInstanceRepository>()
                 .As<IActivityInstanceRepository>()
+                .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<CarRepository>()
+                .As<ICarRepository>()
+                .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<CarFactory>()
+                .As<ICarFactory>()
                 .InstancePerLifetimeScope();
         }
     }
