@@ -1,5 +1,6 @@
 ﻿using CarRentalCompany.API.Factories;
 using CarRentalCompany.Application.Services.Interfaces;
+using CarRentalCompany.Core.Dto.RequestModels;
 using CarRentalCompany.Core.Dto.ResponseModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,11 +22,26 @@ namespace CarRentalCompany.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ClientDto>>> GetAllClients()
         {
-            var clients = _service.GetAllClients();
+            var clients = await _service.GetAllClients();
 
             return _factory
                 .Create(clients)
                 .ToList();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] AddClientRequestModel request)
+        {
+            await _service.Add(request.Name);
+            return Ok(true);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(Guid clientId)
+        {
+            await _service.Delete(clientId);
+
+            return Ok(true);
         }
     }
 }

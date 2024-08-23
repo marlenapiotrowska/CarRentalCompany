@@ -4,9 +4,9 @@ namespace CarRentalCompany.Domain.Repositories
 {
     public interface ICarRepository
     {
-        IEnumerable<Car> GetAll();
-        Car GetById(Guid id);
-        void Add(Car car);
-        void Delete(Guid id);
+        Task<IEnumerable<Car>> GetAll();
+        Task<Car> GetById(Guid id);
+        Task Add(Car car);
+        Task Delete(Guid id);
     }
 }

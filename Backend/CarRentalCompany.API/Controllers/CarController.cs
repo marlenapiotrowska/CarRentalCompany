@@ -31,16 +31,20 @@ namespace CarRentalCompany.API.Controllers
         }
 
         [HttpPost]
-        public async Task AddCar([FromBody] AddCarRequestModel request)
+        public async Task<IActionResult> AddCar([FromBody] AddCarRequestModel request)
         {
             var input = new AddCarInput(request.Brand, request.Model, request.ProductionYear, request.Value, request.VIN, request.Color);
             await _service.Add(input);
+
+            return Ok(true);
         }
 
         [HttpDelete]
-        public async Task Delete(Guid carId)
+        public async Task<IActionResult> Delete(Guid carId)
         {
             await _service.Delete(carId);
+
+            return Ok(true);
         }
     }
 }
