@@ -40,9 +40,10 @@ namespace CarRentalCompany.API.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(Guid carId)
+        [Route("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
         {
-            await _service.Delete(carId);
+            await _service.Delete(id);
 
             return Ok(true);
         }
