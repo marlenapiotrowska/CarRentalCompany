@@ -1,6 +1,7 @@
 ﻿using CarRentalCompany.Domain.Models;
 using CarRentalCompany.Domain.Repositories;
 using CarRentalCompany.Infrastructure.Exceptions;
+using CarRentalCompany.Infrastructure.Factories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ClientDb = CarRentalCompany.Infrastructure.Entities.Client;
 
@@ -9,10 +10,12 @@ namespace CarRentalCompany.Infrastructure.Repositories
     internal class ClientRepository : IClientRepository
     {
         private readonly CarRentalCompanyDbContext _context;
+        private readonly IClientFactory _factory;
 
-        public ClientRepository(CarRentalCompanyDbContext context)
+        public ClientRepository(CarRentalCompanyDbContext context, IClientFactory factory)
         {
             _context = context;
+            _factory = factory;
         }
 
         public async Task Add(Client client)
@@ -21,7 +24,7 @@ namespace CarRentalCompany.Infrastructure.Repositories
                 (client.Id, 
                 client.Name);
 
-            _context.Clients.Add(clientDb);
+            await _context.Clients.AddAsync(clientDb);
             await _context.SaveChangesAsync();
         }
 
@@ -43,6 +46,12 @@ namespace CarRentalCompany.Infrastructure.Repositories
             return clientsDb
                 .Select(c => new Client(c.Id, c.Name))
                 .ToList();
+        }
+
+        public bool CheckIfExists(Guid id)
+        {
+            return _context.Clients
+                .Any(c => c.Id == id);
         }
     }
 }

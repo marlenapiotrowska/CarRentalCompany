@@ -7,5 +7,6 @@ namespace CarRentalCompany.Domain.Repositories
         Task Add(Client client);
         Task Delete(Guid clientId);
         Task<IEnumerable<Client>> GetAllClients();
+        bool CheckIfExists(Guid clientId);
     }
 }

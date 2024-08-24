@@ -34,6 +34,16 @@ namespace CarRentalCompany.Infrastructure
                 .RegisterType<CarFactory>()
                 .As<ICarFactory>()
                 .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<ClientFactory>()
+                .As<IClientFactory>()
+                .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<RentalRepository>()
+                .As<IRentalRepository>()
+                .InstancePerLifetimeScope();
         }
     }
 }

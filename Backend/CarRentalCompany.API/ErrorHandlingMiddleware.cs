@@ -32,6 +32,11 @@ namespace CarRentalCompany.API
                         await context.Response.WriteAsync(ex.Message);
                         break;
 
+                    case InvalidProcedureException:
+                        context.Response.StatusCode = 500;
+                        await context.Response.WriteAsync(ex.Message);
+                        break;
+
                     default:
                         context.Response.StatusCode = 500;
                         await context.Response.WriteAsync(ex.Message);
