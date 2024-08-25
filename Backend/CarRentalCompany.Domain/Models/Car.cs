@@ -2,14 +2,14 @@
 {
     public class Car
     {
-        public Car(Guid id, string brand, string model, int productionYear, int value, string vIN, string color, bool isAvailable, DateTime additionDate)
+        public Car(Guid id, string brand, string model, int productionYear, int value, string vin, string color, bool isAvailable, DateTime additionDate)
         {
             Id = id;
             Brand = brand;
             Model = model;
             ProductionYear = productionYear;
             Value = value;
-            VIN = vIN;
+            VIN = vin;
             Color = color;
             IsAvailable = isAvailable;
             AdditionDate = additionDate;

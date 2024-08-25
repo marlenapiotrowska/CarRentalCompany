@@ -21,11 +21,11 @@ namespace CarRentalCompany.Application.Services
             _activityInstanceRepository = activityInstanceRepository;
         }
 
-        public CarReceiptForm CreateNewCarReceiptForm(string type, Guid clientId)
+        public CarReceiptForm CreateNewCarReceiptForm(Car car, Guid clientId)
         {
-            var form = new CarReceiptForm(type, clientId);
+            var form = new CarReceiptForm(car, clientId);
             _carReceiptFormFactories[string.Empty].Apply(form);
-            AddSpecificActivities(type, form);
+            AddSpecificActivities(car.Brand, form);
 
             _formRepository.Add(form);
             _activityInstanceRepository.Add(form.Activities, form.Id);

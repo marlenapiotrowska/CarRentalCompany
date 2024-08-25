@@ -1,5 +1,7 @@
 ﻿using CarRentalCompany.Domain.Models;
 using CarRentalCompany.Domain.Repositories;
+using CarRentalCompany.Infrastructure.Factories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using RentalDb = CarRentalCompany.Infrastructure.Entities.Rental;
 
 namespace CarRentalCompany.Infrastructure.Repositories
@@ -7,10 +9,12 @@ namespace CarRentalCompany.Infrastructure.Repositories
     internal class RentalRepository : IRentalRepository
     {
         private readonly CarRentalCompanyDbContext _context;
+        private readonly IRentalFactory _factory;
 
-        public RentalRepository(CarRentalCompanyDbContext context)
+        public RentalRepository(CarRentalCompanyDbContext context, IRentalFactory factory)
         {
             _context = context;
+            _factory = factory;
         }
 
         public async Task Add(Rental rental)
@@ -28,10 +32,17 @@ namespace CarRentalCompany.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public bool CheckIfExistsNotEndedForCar(Guid carId)
+        public async Task<Rental?> GetOrDefault(Guid carId)
         {
-            return _context.Rentals
-                .Any(r => r.CarId == carId && !r.IsEnded);
+            var rentalDb = await _context.Rentals
+                .SingleOrDefaultAsync(r => r.CarId == carId && !r.IsEnded);
+            
+            if (rentalDb == null)
+            {
+                return null;
+            }
+
+            return _factory.Create(rentalDb);
         }
     }
 }

@@ -2,8 +2,8 @@
 
 namespace CarRentalCompany.Application.Services.Interfaces
 {
-    public interface IReceiptFormService
+    internal interface IReceiptFormService
     {
-        CarReceiptForm CreateNewCarReceiptForm(string type, Guid clientId);
+        CarReceiptForm CreateNewCarReceiptForm(Car car, Guid clientId);
     }
 }

@@ -20,7 +20,16 @@ namespace CarRentalCompany.API.Controllers
         public async Task<IActionResult> Create([FromBody] AddRentalRequestModel request)
         {
             var input = new CreateRentalInput(request.ClientId, request.CarId);
-            await _service.CreateRental(input);
+            await _service.Create(input);
+
+            return Ok(true);
+        }
+
+        [HttpPost]
+        [Route("{id}/actions/end")]
+        public async Task<IActionResult> End(Guid id)
+        {
+            await _service.End(id);
 
             return Ok(true);
         }
