@@ -18,8 +18,8 @@ namespace CarRentalCompany.Application
                 .InstancePerLifetimeScope();
 
             builder
-               .RegisterType<ReceiptFormService>()
-               .As<IReceiptFormService>()
+               .RegisterType<ReceiptFormFactory>()
+               .As<IReceiptFormFactory>()
                .InstancePerLifetimeScope();
 
             builder

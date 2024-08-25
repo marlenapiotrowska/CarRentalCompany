@@ -5,6 +5,8 @@ namespace CarRentalCompany.Domain.Repositories
     public interface IRentalRepository
     {
         Task Add(Rental rental);
-        Task<Rental?> GetOrDefault(Guid carId);
+        Task<Rental?> GetOrDefaultNotEndedForCarId(Guid carId);
+        Task<Rental?> GetOrDefault(Guid id);
+        Task Update(Rental rental);
     }
 }

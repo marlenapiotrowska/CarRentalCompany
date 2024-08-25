@@ -11,7 +11,7 @@ namespace CarRentalCompany.API.Factories
             return new CarReceiptFormDto
             {
                 Id = form.Id,
-                Type = form.Type,
+                Type = form.Car.Brand,
                 Activities = CreateActivityDto(form.Activities),
                 ClientId = form.ClientId
             };

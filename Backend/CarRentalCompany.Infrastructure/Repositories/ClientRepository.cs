@@ -48,10 +48,17 @@ namespace CarRentalCompany.Infrastructure.Repositories
                 .ToList();
         }
 
-        public bool CheckIfExists(Guid id)
+        public async Task<Client?> GetOrDefault(Guid id)
         {
-            return _context.Clients
-                .Any(c => c.Id == id);
+            var client = await _context.Clients
+                .SingleOrDefaultAsync(c => c.Id == id);
+
+            if (client == null)
+            {
+                return null;
+            }
+
+            return _factory.Create(client);
         }
     }
 }

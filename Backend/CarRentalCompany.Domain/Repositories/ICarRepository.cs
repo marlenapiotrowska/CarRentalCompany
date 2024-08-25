@@ -7,6 +7,6 @@ namespace CarRentalCompany.Domain.Repositories
         Task<IEnumerable<Car>> GetAll();
         Task Add(Car car);
         Task Delete(Guid id);
-        bool CheckIfExists(Guid id);
+        Task<Car?> GetOrDefault(Guid carId);
     }
 }

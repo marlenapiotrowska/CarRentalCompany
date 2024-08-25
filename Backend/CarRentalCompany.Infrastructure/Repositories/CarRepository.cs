@@ -60,10 +60,17 @@ namespace CarRentalCompany.Infrastructure.Repositories
                 .ToList();
         }
 
-        public bool CheckIfExists(Guid id)
+        public async Task<Car?> GetOrDefault(Guid id)
         {
-            return _context.Cars
-                .Any(c => c.Id == id);
+            var car = await _context.Cars
+                .SingleOrDefaultAsync(c => c.Id == id);
+
+            if (car == null)
+            {
+                return null;
+            }
+
+            return _factory.Create(car);
         }
     }
 }

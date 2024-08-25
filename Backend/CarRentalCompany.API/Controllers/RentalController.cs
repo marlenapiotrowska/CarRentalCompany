@@ -29,6 +29,7 @@ namespace CarRentalCompany.API.Controllers
         [Route("{id}/actions/end")]
         public async Task<IActionResult> End(Guid id)
         {
+            //TODO: DRUKOWANIE ALBO ZWRACANIE JAKO REZULTAT FORMULARZA
             await _service.End(id);
 
             return Ok(true);

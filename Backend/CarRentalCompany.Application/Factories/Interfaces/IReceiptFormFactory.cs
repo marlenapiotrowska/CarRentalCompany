@@ -1,8 +1,8 @@
 ﻿using CarRentalCompany.Domain.Models;
 
-namespace CarRentalCompany.Application.Services.Interfaces
+namespace CarRentalCompany.Application.Factories.Interfaces
 {
-    internal interface IReceiptFormService
+    internal interface IReceiptFormFactory
     {
         CarReceiptForm CreateNewCarReceiptForm(Car car, Guid clientId);
     }
