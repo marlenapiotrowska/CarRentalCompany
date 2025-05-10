@@ -20,7 +20,7 @@ namespace CarRentalCompany.Infrastructure.Repositories
                 (carReceiptForm.Id,
                 carReceiptForm.Car.Id,
                 carReceiptForm.ClientId,
-                carReceiptForm.C);
+                carReceiptForm.CreationDate);
 
             _context.ReceiptForms.Add(receiptForm);
             _context.SaveChanges();
