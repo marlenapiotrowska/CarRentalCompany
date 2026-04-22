@@ -2,6 +2,7 @@
 using CarRentalCompany.Application.Factories.Interfaces;
 using CarRentalCompany.Application.Services.Inputs;
 using CarRentalCompany.Application.Services.Interfaces;
+using CarRentalCompany.Domain.Models;
 using CarRentalCompany.Domain.Providers;
 using CarRentalCompany.Domain.Repositories;
 using CarRentalCompany.Infrastructure;
@@ -65,10 +66,22 @@ internal class RentalService : IRentalService
         _transaction.Begin();
 
         var receiptForm = _receiptFormFactory.CreateNewCarReceiptForm(car, rental.ClientId);
+        SaveReceiptForm(receiptForm);
         rental.SetReceiptForm(receiptForm.Id);
         rental.End(_clock.GetTime());
         await _rentalRepository.UpdateAsync(rental);
 
         _transaction.Commit();
+    }
+
+    private void SaveReceiptForm(CarReceiptForm receiptForm)
+    {
+        var payload = receiptForm.Activities
+            .OrderBy(a => a.OrderNo)
+            .Select(a => $"{a.Name} | {a.Payload}");
+        var fileName = $"ReceiptForm_{receiptForm.Id}.txt";
+        var path = $@"D:\4 - Maja sie uczy\4 - My apps\CarRentalCompanyFiles\{fileName}";
+
+        File.WriteAllLines(path, payload);
     }
 }

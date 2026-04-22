@@ -16,7 +16,7 @@ namespace CarRentalCompany.Frontend.Presentation.Views
         {
             var wasExitKeyPressed = false;
 
-            while (wasExitKeyPressed == false)
+            while (!wasExitKeyPressed)
             {
                 Console.WriteLine("---------WELCOME IN CAR RENTAL---------");
                 Console.WriteLine(
