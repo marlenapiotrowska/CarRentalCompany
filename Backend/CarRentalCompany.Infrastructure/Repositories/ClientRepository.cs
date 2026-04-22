@@ -18,17 +18,17 @@ namespace CarRentalCompany.Infrastructure.Repositories
             _factory = factory;
         }
 
-        public async Task Add(Client client)
+        public async Task AddAsync(Client client)
         {
-            var clientDb = ClientDb.Create
-                (client.Id, 
+            var clientDb = ClientDb.Create(
+                client.Id,
                 client.Name);
 
             await _context.Clients.AddAsync(clientDb);
             await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             var clientDb = await _context.Clients
                 .SingleOrDefaultAsync(c => c.Id == id)
@@ -38,27 +38,24 @@ namespace CarRentalCompany.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Client>> GetAllClients()
+        public async Task<IEnumerable<Client>> GetAllClientsAsync()
         {
             var clientsDb = await _context.Clients
                 .ToListAsync();
 
             return clientsDb
-                .Select(c => new Client(c.Id, c.Name))
-                .ToList();
+                .ConvertAll(c => new Client(c.Id, c.Name))
+;
         }
 
-        public async Task<Client?> GetOrDefault(Guid id)
+        public async Task<Client?> GetOrDefaultAsync(Guid id)
         {
             var client = await _context.Clients
                 .SingleOrDefaultAsync(c => c.Id == id);
 
-            if (client == null)
-            {
-                return null;
-            }
-
-            return _factory.Create(client);
+            return client == null
+                ? null
+                : _factory.Create(client);
         }
     }
 }

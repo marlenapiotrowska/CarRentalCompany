@@ -2,8 +2,6 @@
 {
     internal abstract class View : IView
     {
-        protected abstract Task RenderViewAsync();
-
         public async Task RenderAsync()
         {
             Console.Clear();
@@ -12,5 +10,7 @@
 
             Console.Clear();
         }
+
+        protected abstract Task RenderViewAsync();
     }
 }

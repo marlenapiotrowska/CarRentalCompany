@@ -19,14 +19,14 @@ namespace CarRentalCompany.API.Factories
 
         private IEnumerable<ActivityDto> CreateActivityDto(IEnumerable<ActivityInstance> activities)
         {
-            return activities.Select(activity => 
+            return activities.Select(activity =>
             new ActivityDto
                 {
                     Id = activity.Id,
                     Name = activity.Name,
                     Payload = activity.Payload,
                     OrderNo = activity.OrderNo,
-                    IsCompleted = activity.IsCompleted,
+                    IsCompleted = activity.IsCompleted
                 })
                 .ToList();
         }

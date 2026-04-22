@@ -2,16 +2,16 @@
 {
     public class ExecutionResult
     {
-        public bool IsSuccess { get; }
-        public string Message { get; }
-
         protected ExecutionResult(
-            bool isSuccess,
-            string message)
+           bool isSuccess,
+           string message)
         {
             IsSuccess = isSuccess;
             Message = message;
         }
+
+        public bool IsSuccess { get; }
+        public string Message { get; }
 
         public static ExecutionResult CreateSuccessful()
         {

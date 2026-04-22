@@ -16,8 +16,8 @@ namespace CarRentalCompany.Infrastructure.Repositories
         public void Add(CarReceiptForm carReceiptForm)
         {
             var receiptForm = ReceiptForm
-                .Create
-                (carReceiptForm.Id,
+                .Create(
+                carReceiptForm.Id,
                 carReceiptForm.Car.Id,
                 carReceiptForm.ClientId,
                 carReceiptForm.CreationDate);

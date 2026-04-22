@@ -4,9 +4,9 @@ namespace CarRentalCompany.Domain.Repositories
 {
     public interface IRentalRepository
     {
-        Task Add(Rental rental);
-        Task<Rental?> GetOrDefaultNotEndedForCarId(Guid carId);
-        Task<Rental?> GetOrDefault(Guid id);
-        Task Update(Rental rental);
+        Task AddAsync(Rental rental);
+        Task<Rental?> GetOrDefaultNotEndedForCarIdAsync(Guid carId);
+        Task<Rental?> GetOrDefaultAsync(Guid id);
+        Task UpdateAsync(Rental rental);
     }
 }

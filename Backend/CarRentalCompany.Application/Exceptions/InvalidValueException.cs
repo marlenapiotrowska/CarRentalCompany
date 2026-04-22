@@ -2,7 +2,8 @@
 {
     public class InvalidValueException : Exception
     {
-        internal InvalidValueException(string message) : base(message)
+        internal InvalidValueException(string message)
+            : base(message)
         {
         }
     }

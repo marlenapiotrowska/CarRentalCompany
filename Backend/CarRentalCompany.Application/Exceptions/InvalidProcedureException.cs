@@ -2,7 +2,8 @@
 {
     public class InvalidProcedureException : Exception
     {
-        internal InvalidProcedureException(string message) : base(message)
+        internal InvalidProcedureException(string message)
+            : base(message)
         {
         }
     }

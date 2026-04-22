@@ -15,8 +15,8 @@ namespace CarRentalCompany.Application.Factories
 
         public Rental Create(Guid clientId, Guid carId)
         {
-            return new Rental
-                (Guid.NewGuid(),
+            return new Rental(
+                Guid.NewGuid(),
                 _clock.GetTime(),
                 null,
                 carId,

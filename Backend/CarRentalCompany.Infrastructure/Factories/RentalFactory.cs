@@ -8,8 +8,8 @@ namespace CarRentalCompany.Infrastructure.Factories
     {
         public Rental Create(RentalDb rentalDb)
         {
-            return new Rental
-                (rentalDb.Id,
+            return new Rental(
+                rentalDb.Id,
                 rentalDb.RentalStartDate,
                 rentalDb.RentalEndDate,
                 rentalDb.CarId,

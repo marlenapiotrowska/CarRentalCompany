@@ -18,10 +18,10 @@ namespace CarRentalCompany.Infrastructure.Repositories
             _factory = factory;
         }
 
-        public async Task Add(Rental rental)
+        public async Task AddAsync(Rental rental)
         {
-            var rentalDb = RentalDb.Create
-                (rental.Id,
+            var rentalDb = RentalDb.Create(
+                rental.Id,
                 rental.RentalStartDate,
                 rental.RentalEndDate,
                 rental.CarId,
@@ -33,7 +33,7 @@ namespace CarRentalCompany.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Rental?> GetOrDefaultNotEndedForCarId(Guid carId)
+        public async Task<Rental?> GetOrDefaultNotEndedForCarIdAsync(Guid carId)
         {
             var rentalDb = await _context.Rentals
                 .SingleOrDefaultAsync(r => r.CarId == carId && !r.IsEnded);
@@ -41,7 +41,7 @@ namespace CarRentalCompany.Infrastructure.Repositories
             return GetRental(rentalDb);
         }
 
-        public async Task<Rental?> GetOrDefault(Guid id)
+        public async Task<Rental?> GetOrDefaultAsync(Guid id)
         {
             var rentalDb = await _context.Rentals
                 .SingleOrDefaultAsync(r => r.Id == id);
@@ -49,17 +49,7 @@ namespace CarRentalCompany.Infrastructure.Repositories
             return GetRental(rentalDb);
         }
 
-        private Rental? GetRental(RentalDb? rentalDb)
-        {
-            if (rentalDb == null)
-            {
-                return null;
-            }
-
-            return _factory.Create(rentalDb);
-        }
-
-        public async Task Update(Rental rental)
+        public async Task UpdateAsync(Rental rental)
         {
             var rentalDb = await _context.Rentals
                 .SingleOrDefaultAsync(r => r.Id == rental.Id)
@@ -72,6 +62,13 @@ namespace CarRentalCompany.Infrastructure.Repositories
             rentalDb.IsEnded = rental.IsEnded;
 
             await _context.SaveChangesAsync();
+        }
+
+        private Rental? GetRental(RentalDb? rentalDb)
+        {
+            return rentalDb == null
+                ? null
+                : _factory.Create(rentalDb);
         }
     }
 }

@@ -12,8 +12,8 @@ namespace CarRentalCompany.Frontend.Presentation.Views.Forms.Components
             while (!wasExitKeyPressed)
             {
                 Console.WriteLine("Select form type:");
-                Console.WriteLine
-                    ("\n[1] Basic form" +
+                Console.WriteLine(
+                    "\n[1] Basic form" +
                     "\n[2] Mercedes form" +
                     "\n[3] Porsche form" +
                     "\n[4] Volvo form");

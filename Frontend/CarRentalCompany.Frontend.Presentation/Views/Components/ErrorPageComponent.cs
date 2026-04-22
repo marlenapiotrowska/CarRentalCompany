@@ -15,7 +15,6 @@ namespace CarRentalCompany.Frontend.Presentation.Views.Components
         {
             Console.WriteLine(_message);
             Console.ReadKey();
-            return;
         }
     }
 }

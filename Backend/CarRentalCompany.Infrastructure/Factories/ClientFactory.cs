@@ -8,8 +8,8 @@ namespace CarRentalCompany.Infrastructure.Factories
     {
         public Client Create(ClientDb clientDb)
         {
-            return new Client
-                (clientDb.Id, 
+            return new Client(
+                clientDb.Id,
                 clientDb.Name);
         }
     }

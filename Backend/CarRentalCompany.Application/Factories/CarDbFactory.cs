@@ -22,29 +22,34 @@ namespace CarRentalCompany.Application.Factories
             {
                 throw new EmptyInputValueException("brand");
             }
+
             if (string.IsNullOrEmpty(input.Model))
             {
                 throw new EmptyInputValueException("model");
             }
+
             if (input.ProductionYear < _minProductionYear)
             {
                 throw new InvalidValueException($"Car production year must be more than {_minProductionYear}");
             }
+
             if (input.Value <= 0)
             {
                 throw new InvalidValueException("Car value must more than 0");
             }
+
             if (string.IsNullOrEmpty(input.VIN))
             {
                 throw new EmptyInputValueException("VIN");
             }
+
             if (string.IsNullOrEmpty(input.Color))
             {
                 throw new EmptyInputValueException("color");
             }
 
-            return new Car
-                (Guid.NewGuid(),
+            return new Car(
+                Guid.NewGuid(),
                 input.Brand,
                 input.Model,
                 input.ProductionYear,

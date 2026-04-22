@@ -5,6 +5,6 @@ namespace CarRentalCompany.Frontend.Domain.Interfaces
 {
     public interface ICarReceiptFormRepository
     {
-        Task<ExecutionResultGeneric<CarReceiptFormDto>> CreateCarReceiptForm(string type, Guid clientId);
+        Task<ExecutionResultGeneric<CarReceiptFormDto>> CreateCarReceiptFormAsync(string type, Guid clientId);
     }
 }

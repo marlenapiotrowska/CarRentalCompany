@@ -7,16 +7,16 @@ namespace CarRentalCompany.API
     {
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-			try
-			{
-				await next.Invoke(context);
-			}
-			catch (Exception ex)
-			{
+            try
+            {
+                await next.Invoke(context);
+            }
+            catch (Exception ex)
+            {
                 context.Response.ContentType = "application/text/plain";
 
                 switch (ex)
-				{
+                {
                     case EntityNotFoundException:
                         context.Response.StatusCode = StatusCodes.Status404NotFound;
                         await context.Response.WriteAsync(ex.Message);
@@ -42,7 +42,7 @@ namespace CarRentalCompany.API
                         await context.Response.WriteAsync(ex.Message);
                         break;
                 }
-			}
+            }
         }
     }
 }

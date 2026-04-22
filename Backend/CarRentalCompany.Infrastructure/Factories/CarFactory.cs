@@ -8,9 +8,9 @@ namespace CarRentalCompany.Infrastructure.Factories
     {
         public Car Create(CarDb car)
         {
-            return new Car
-                (car.Id, 
-                car.Brand, 
+            return new Car(
+                car.Id,
+                car.Brand,
                 car.Model,
                 car.ProductionYear,
                 car.Value,

@@ -5,8 +5,8 @@ namespace CarRentalCompany.Application.Services.Interfaces
 {
     public interface ICarService
     {
-        Task<IEnumerable<Car>> GetAll();
-        Task Add(AddCarInput input);
-        Task Delete(Guid carId);
+        Task<IEnumerable<Car>> GetAllAsync();
+        Task AddAsync(AddCarInput input);
+        Task DeleteAsync(Guid carId);
     }
 }

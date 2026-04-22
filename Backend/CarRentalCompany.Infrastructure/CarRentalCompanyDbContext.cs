@@ -6,16 +6,16 @@ namespace CarRentalCompany.Infrastructure
 {
     public class CarRentalCompanyDbContext : DbContext
     {
+        public CarRentalCompanyDbContext(DbContextOptions<CarRentalCompanyDbContext> options)
+            : base(options)
+        {
+        }
+
         public DbSet<ReceiptForm> ReceiptForms { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Car> Cars { get; set; }
         public DbSet<Rental> Rentals { get; set; }
         public DbSet<ActivityInstance> ActivitiesInstances { get; set; }
-
-        public CarRentalCompanyDbContext(DbContextOptions<CarRentalCompanyDbContext> options)
-        : base(options)
-        {
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

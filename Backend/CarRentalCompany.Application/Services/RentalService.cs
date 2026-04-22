@@ -36,30 +36,30 @@ internal class RentalService : IRentalService
         _transaction = transaction;
     }
 
-    public async Task Create(CreateRentalInput input)
+    public async Task CreateAsync(CreateRentalInput input)
     {
-        _ = await _clientRepository.GetOrDefault(input.ClientId)
+        _ = await _clientRepository.GetOrDefaultAsync(input.ClientId)
             ?? throw new InvalidProcedureException($"Client with id {input.ClientId} does not exists.");
-        _ = await _carRepository.GetOrDefault(input.CarId) 
+        _ = await _carRepository.GetOrDefaultAsync(input.CarId) 
             ?? throw new InvalidProcedureException($"Car with id {input.CarId} does not exist.");
 
-        var rentalNotEndedForCar = await _rentalRepository.GetOrDefaultNotEndedForCarId(input.CarId);
+        var rentalNotEndedForCar = await _rentalRepository.GetOrDefaultNotEndedForCarIdAsync(input.CarId);
         if (rentalNotEndedForCar != null)
             throw new InvalidProcedureException($"There is another not ended rental for car with Id {input.CarId}");
 
         var rental = _factory.Create(input.ClientId, input.CarId);
-        await _rentalRepository.Add(rental);
+        await _rentalRepository.AddAsync(rental);
     }
 
-    public async Task End(Guid id)
+    public async Task EndAsync(Guid id)
     {
-        var rental = await _rentalRepository.GetOrDefault(id)
+        var rental = await _rentalRepository.GetOrDefaultAsync(id)
             ?? throw new InvalidProcedureException($"Rental with id {id} does not exist.");
 
         if (rental.IsEnded)
             throw new InvalidOperationException($"Rental with id {id} is completed.");
 
-        var car = await _carRepository.GetOrDefault(rental.CarId)
+        var car = await _carRepository.GetOrDefaultAsync(rental.CarId)
              ?? throw new InvalidProcedureException($"Car with id {id} does not exist.");
 
         _transaction.Begin();
@@ -67,7 +67,7 @@ internal class RentalService : IRentalService
         var receiptForm = _receiptFormFactory.CreateNewCarReceiptForm(car, rental.ClientId);
         rental.SetReceiptForm(receiptForm.Id);
         rental.End(_clock.GetTime());
-        await _rentalRepository.Update(rental);
+        await _rentalRepository.UpdateAsync(rental);
 
         _transaction.Commit();
     }

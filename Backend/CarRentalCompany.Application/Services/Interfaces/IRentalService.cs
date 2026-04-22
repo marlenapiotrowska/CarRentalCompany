@@ -4,7 +4,7 @@ namespace CarRentalCompany.Application.Services.Interfaces
 {
     public interface IRentalService
     {
-        Task Create(CreateRentalInput input);
-        Task End(Guid id);
+        Task CreateAsync(CreateRentalInput input);
+        Task EndAsync(Guid id);
     }
 }

@@ -17,11 +17,11 @@ namespace CarRentalCompany.Infrastructure.Repositories
             _context = context;
             _factory = factory;
         }
-        
-        public async Task Add(Car car)
+
+        public async Task AddAsync(Car car)
         {
-            var carDb = CarDb.Create
-                (car.Id,
+            var carDb = CarDb.Create(
+                car.Id,
                 car.Brand,
                 car.Model,
                 car.ProductionYear,
@@ -35,7 +35,7 @@ namespace CarRentalCompany.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             var carDb = await _context.Cars
                 .SingleOrDefaultAsync(c => c.Id == id)
@@ -45,32 +45,31 @@ namespace CarRentalCompany.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Car>> GetAll()
+        public async Task<IEnumerable<Car>> GetAllAsync()
         {
             var cars = await _context.Cars
                 .ToListAsync();
 
             if (cars.Count == 0)
-            {
-                return Enumerable.Empty<Car>();
-            }
+                return [];
 
             return cars
-                .Select(car => _factory.Create(car))
-                .ToList();
+                .ConvertAll(_factory.Create)
+;
         }
 
-        public async Task<Car?> GetOrDefault(Guid id)
+        public async Task<Car?> GetOrDefaultAsync(Guid id)
         {
             var car = await _context.Cars
                 .SingleOrDefaultAsync(c => c.Id == id);
 
-            if (car == null)
+            switch (car)
             {
-                return null;
+                case null:
+                    return null;
+                default:
+                    return _factory.Create(car);
             }
-
-            return _factory.Create(car);
         }
     }
 }

@@ -4,8 +4,8 @@ namespace CarRentalCompany.Application.Services.Interfaces
 {
     public interface IClientService
     {
-        Task<IEnumerable<Client>> GetAllClients();
-        Task Add(string name);
-        Task Delete(Guid clientId);
+        Task<IEnumerable<Client>> GetAllClientsAsync();
+        Task AddAsync(string name);
+        Task DeleteAsync(Guid clientId);
     }
 }

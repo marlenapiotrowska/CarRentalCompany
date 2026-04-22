@@ -4,45 +4,44 @@ using CarRentalCompany.Core.Dto.RequestModels;
 using CarRentalCompany.Core.Dto.ResponseModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CarRentalCompany.API.Controllers
+namespace CarRentalCompany.API.Controllers;
+
+[ApiController]
+[Route("clients")]
+public class ClientController : ControllerBase
 {
-    [ApiController]
-    [Route("clients")]
-    public class ClientController : ControllerBase
+    private readonly IClientService _service;
+    private readonly IClientDtoFactory _factory;
+
+    public ClientController(IClientService service, IClientDtoFactory factory)
     {
-        private readonly IClientService _service;
-        private readonly IClientDtoFactory _factory;
+        _service = service;
+        _factory = factory;
+    }
 
-        public ClientController(IClientService service, IClientDtoFactory factory)
-        {
-            _service = service;
-            _factory = factory;
-        }
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<ClientDto>>> GetAllClients()
+    {
+        var clients = await _service.GetAllClientsAsync();
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<ClientDto>>> GetAllClients()
-        {
-            var clients = await _service.GetAllClients();
+        return _factory
+            .Create(clients)
+            .ToList();
+    }
 
-            return _factory
-                .Create(clients)
-                .ToList();
-        }
+    [HttpPost]
+    public async Task<IActionResult> Add([FromBody] AddClientRequestModel request)
+    {
+        await _service.AddAsync(request.Name);
+        return Ok(true);
+    }
 
-        [HttpPost]
-        public async Task<IActionResult> Add([FromBody] AddClientRequestModel request)
-        {
-            await _service.Add(request.Name);
-            return Ok(true);
-        }
+    [HttpDelete]
+    [Route("{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        await _service.DeleteAsync(id);
 
-        [HttpDelete]
-        [Route("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            await _service.Delete(id);
-
-            return Ok(true);
-        }
+        return Ok(true);
     }
 }
