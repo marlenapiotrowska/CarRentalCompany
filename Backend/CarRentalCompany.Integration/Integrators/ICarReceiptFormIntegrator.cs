@@ -1,6 +1,6 @@
 ﻿using CarRentalCompany.Domain.Models;
 
-namespace CarRentalCompany.Integration.Factories
+namespace CarRentalCompany.Integration.Integrators
 {
     public interface ICarReceiptFormIntegrator
     {

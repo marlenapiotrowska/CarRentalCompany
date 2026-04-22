@@ -2,6 +2,8 @@
 {
     public class Car
     {
+        private const int _highValue = 500000;
+
         public Car(Guid id, string brand, string model, int productionYear, int value, string vin, string color, bool isAvailable, DateTime additionDate)
         {
             Id = id;
@@ -24,5 +26,10 @@
         public string Color { get; }
         public bool IsAvailable { get; }
         public DateTime AdditionDate { get; }
+
+        public bool IsHighValued()
+        {
+            return Value >= _highValue;
+        }
     }
 }

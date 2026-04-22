@@ -3,7 +3,7 @@ using CarRentalCompany.Application.Factories.Interfaces;
 using CarRentalCompany.Domain.Models;
 using CarRentalCompany.Domain.Providers;
 using CarRentalCompany.Domain.Repositories;
-using CarRentalCompany.Integration.Factories;
+using CarRentalCompany.Integration.Integrators;
 
 namespace CarRentalCompany.Application.Factories
 {
@@ -16,7 +16,7 @@ namespace CarRentalCompany.Application.Factories
 
         public ReceiptFormFactory(
             IIndex<string, ICarReceiptFormIntegrator> carReceiptFormFactories,
-            IReceiptFormRepository formRepository, 
+            IReceiptFormRepository formRepository,
             IActivityInstanceRepository activityInstanceRepository,
             IClock clock)
         {
