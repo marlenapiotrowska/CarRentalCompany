@@ -145,7 +145,7 @@ namespace CarRentalCompany.Infrastructure.Migrations
                     b.Property<Guid?>("ReceiptFormId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("RentalEndDate")
+                    b.Property<DateTime?>("RentalEndDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("RentalStartDate")

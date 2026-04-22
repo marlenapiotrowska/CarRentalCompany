@@ -4,23 +4,26 @@
     {
         private readonly List<ActivityInstance> _activites = [];
 
-        public CarReceiptForm(string type, Guid clientId)
+        public CarReceiptForm(Car car, Guid clientId, DateTime creationDate)
         {
             Id = Guid.NewGuid();
-            Type = type;
+            Car = car;
             ClientId = clientId;
+            CreationDate = creationDate;
         }
 
-        public CarReceiptForm(Guid id, string type, Guid clientId)
+        public CarReceiptForm(Guid id, Car car, Guid clientId, DateTime creationDate)
         {
             Id = id;
-            Type = type;
+            Car = car;
             ClientId = clientId;
+            CreationDate = creationDate;
         }
 
         public Guid Id { get; }
-        public string Type { get; }
+        public Car Car { get; }
         public Guid ClientId { get; }
+        public DateTime CreationDate { get; set; }
         public IReadOnlyList<ActivityInstance> Activities
             => _activites;
 

@@ -1,6 +1,6 @@
 ﻿using CarRentalCompany.Domain.Models;
 
-namespace CarRentalCompany.Integration.Factories
+namespace CarRentalCompany.Integration.Integrators
 {
     public class CarReceiptFormIntegrator : ICarReceiptFormIntegrator
     {
@@ -14,6 +14,11 @@ namespace CarRentalCompany.Integration.Factories
             form.AddActivity(new ActivityInstance("System updated", 4));
             form.AddActivity(new ActivityInstance("Refueled", 5));
             form.AddActivity(new ActivityInstance("Washed", 6));
+
+            if (form.Car.IsHighValued())
+            {
+                form.AddActivity(new ActivityInstance("Inspection of the damage", 7));
+            }
         }
     }
 }

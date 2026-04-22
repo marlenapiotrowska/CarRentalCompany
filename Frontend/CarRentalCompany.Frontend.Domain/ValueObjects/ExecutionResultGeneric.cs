@@ -1,16 +1,17 @@
 ﻿namespace CarRentalCompany.Frontend.Domain.ValueObjects
 {
-    public class ExecutionResultGeneric<TResult> : ExecutionResult
+    public sealed class ExecutionResultGeneric<TResult> : ExecutionResult
     {
-        public TResult Payload { get; }
-
         private ExecutionResultGeneric(
             bool isSuccess,
             string message,
-            TResult payload) : base(isSuccess, message)
+            TResult payload)
+            : base(isSuccess, message)
         {
             Payload = payload;
         }
+
+        public TResult Payload { get; }
 
         public static ExecutionResultGeneric<TResult> CreateSuccessful(TResult payload)
         {

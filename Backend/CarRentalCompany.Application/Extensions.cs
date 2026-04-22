@@ -18,8 +18,8 @@ namespace CarRentalCompany.Application
                 .InstancePerLifetimeScope();
 
             builder
-               .RegisterType<ReceiptFormService>()
-               .As<IReceiptFormService>()
+               .RegisterType<ReceiptFormFactory>()
+               .As<IReceiptFormFactory>()
                .InstancePerLifetimeScope();
 
             builder
@@ -40,6 +40,16 @@ namespace CarRentalCompany.Application
             builder
                 .RegisterType<ClientDbFactory>()
                 .As<IClientDbFactory>()
+                .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<RentalService>()
+                .As<IRentalService>()
+                .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<RentalDbFactory>()
+                .As<IRentalDbFactory>()
                 .InstancePerLifetimeScope();
         }
     }

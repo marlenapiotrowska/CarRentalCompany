@@ -16,11 +16,11 @@ namespace CarRentalCompany.Frontend.Presentation.Views
         {
             var wasExitKeyPressed = false;
 
-            while (wasExitKeyPressed == false)
+            while (!wasExitKeyPressed)
             {
                 Console.WriteLine("---------WELCOME IN CAR RENTAL---------");
-                Console.WriteLine
-                    ("\n[1] To create new form" +
+                Console.WriteLine(
+                    "\n[1] To create new form" +
                     "\n[ESC] To quit");
 
                 var pressedKey = Console.ReadKey();

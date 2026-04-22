@@ -5,6 +5,6 @@ namespace CarRentalCompany.Frontend.Domain.Interfaces
 {
     public interface IClientRepository
     {
-        Task<ExecutionResultGeneric<IEnumerable<ClientDto>>> GetAllClients();
+        Task<ExecutionResultGeneric<IEnumerable<ClientDto>>> GetAllClientsAsync();
     }
 }

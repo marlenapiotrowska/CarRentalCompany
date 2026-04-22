@@ -11,7 +11,7 @@ namespace CarRentalCompany.API.Factories
             return new CarReceiptFormDto
             {
                 Id = form.Id,
-                Type = form.Type,
+                Type = form.Car.Brand,
                 Activities = CreateActivityDto(form.Activities),
                 ClientId = form.ClientId
             };
@@ -19,14 +19,14 @@ namespace CarRentalCompany.API.Factories
 
         private IEnumerable<ActivityDto> CreateActivityDto(IEnumerable<ActivityInstance> activities)
         {
-            return activities.Select(activity => 
+            return activities.Select(activity =>
             new ActivityDto
                 {
                     Id = activity.Id,
                     Name = activity.Name,
                     Payload = activity.Payload,
                     OrderNo = activity.OrderNo,
-                    IsCompleted = activity.IsCompleted,
+                    IsCompleted = activity.IsCompleted
                 })
                 .ToList();
         }

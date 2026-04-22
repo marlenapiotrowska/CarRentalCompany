@@ -10,7 +10,7 @@ namespace CarRentalCompany.Frontend.DataAccess
     {
         private const string _apiPath = "http://localhost:5251";
 
-        public async Task<ExecutionResultGeneric<CarReceiptFormDto>> CreateCarReceiptForm(string type, Guid clientId)
+        public async Task<ExecutionResultGeneric<CarReceiptFormDto>> CreateCarReceiptFormAsync(string type, Guid clientId)
         {
             var request = new Request<CreateCarReceiptFormRequestModel, CarReceiptFormDto>()
             {
@@ -26,7 +26,7 @@ namespace CarRentalCompany.Frontend.DataAccess
             return await SendAsync(request);
         }
 
-        public async Task<ExecutionResultGeneric<IEnumerable<ClientDto>>> GetAllClients()
+        public async Task<ExecutionResultGeneric<IEnumerable<ClientDto>>> GetAllClientsAsync()
         {
             var request = new Request<HttpRequestMessage, IEnumerable<ClientDto>>()
             {

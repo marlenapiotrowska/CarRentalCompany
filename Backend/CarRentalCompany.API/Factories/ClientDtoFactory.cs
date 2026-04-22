@@ -10,7 +10,7 @@ namespace CarRentalCompany.API.Factories
             return clients.Select(c => new ClientDto
             {
                 Id = c.Id,
-                Name = c.Name,
+                Name = c.Name
             });
         }
     }

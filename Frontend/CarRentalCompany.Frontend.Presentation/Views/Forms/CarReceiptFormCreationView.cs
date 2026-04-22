@@ -20,13 +20,13 @@ namespace CarRentalCompany.Frontend.Presentation.Views.Forms
 
         protected override async Task RenderViewAsync()
         {
-            var getClients = await _clientRepository.GetAllClients();
+            var getClients = await _clientRepository.GetAllClientsAsync();
             ValidateSuccess(getClients);
 
             var selectedClient = new SelectClientComponent(getClients.Payload).Render();
             var selectedType = new SelectTypeComponent().Render();
 
-            var createForm = await _formRepository.CreateCarReceiptForm(selectedType, selectedClient.Id);
+            var createForm = await _formRepository.CreateCarReceiptFormAsync(selectedType, selectedClient.Id);
             ValidateSuccess(createForm);
             var activities = createForm.Payload.Activities
                 .OrderBy(a => a.OrderNo);
@@ -38,12 +38,10 @@ namespace CarRentalCompany.Frontend.Presentation.Views.Forms
         private static void DisplayResult(ExecutionResultGeneric<CarReceiptFormDto> createForm, IEnumerable<ActivityDto> activities)
         {
             Console.WriteLine($"Form type: {createForm.Payload.Type}" +
-                $"\nActivities:");
+                "\nActivities:");
 
-            foreach (var activity in activities)
-            {
-                Console.WriteLine($"[{activities.ToList().IndexOf(activity) + 1}] {activity.Name}");
-            }
+            foreach (var (activity, index) in activities.Select((activity, index) => (activity, index)))
+                Console.WriteLine($"[{index + 1}] {activity.Name}");
 
             Console.ReadKey();
         }

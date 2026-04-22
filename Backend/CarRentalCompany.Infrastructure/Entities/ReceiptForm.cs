@@ -10,13 +10,14 @@
         public Guid CarId { get; set; }
         public ICollection<ActivityInstance> Activities { get; set; }
 
-        public static ReceiptForm Create(Guid id, Guid carId, Guid clientId)
+        public static ReceiptForm Create(Guid id, Guid carId, Guid clientId, DateTime creationDate)
         {
             return new ReceiptForm
             {
                 Id = id,
                 CarId = carId,
-                ClientId = clientId
+                ClientId = clientId,
+                CreationDate = creationDate
             };
         }
     }

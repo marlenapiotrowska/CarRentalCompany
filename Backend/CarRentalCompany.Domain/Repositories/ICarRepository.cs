@@ -1,12 +1,11 @@
 ﻿using CarRentalCompany.Domain.Models;
 
-namespace CarRentalCompany.Domain.Repositories
+namespace CarRentalCompany.Domain.Repositories;
+
+public interface ICarRepository
 {
-    public interface ICarRepository
-    {
-        Task<IEnumerable<Car>> GetAll();
-        Task<Car> GetById(Guid id);
-        Task Add(Car car);
-        Task Delete(Guid id);
-    }
+    Task<IEnumerable<Car>> GetAllAsync();
+    Task AddAsync(Car car);
+    Task DeleteAsync(Guid id);
+    Task<Car?> GetOrDefaultAsync(Guid carId);
 }

@@ -21,9 +21,7 @@ namespace CarRentalCompany.Frontend.Presentation.Views.Forms.Components
             {
                 Console.WriteLine("Select client:");
                 foreach (var client in _clients)
-                {
                     Console.WriteLine($"[{_clients.ToList().IndexOf(client) + 1}] {client.Name}");
-                }
 
                 if (!int.TryParse(Console.ReadLine(), out int clientIndex))
                 {

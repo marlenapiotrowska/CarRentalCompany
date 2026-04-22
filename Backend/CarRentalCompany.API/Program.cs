@@ -5,10 +5,10 @@ using CarRentalCompany.API.Factories;
 using CarRentalCompany.API.Factories.Interfaces;
 using CarRentalCompany.Application;
 using CarRentalCompany.Infrastructure;
-using CarRentalCompany.Integration.Factories;
-using CarRentalCompany.Integration.Mercedes.Factories;
-using CarRentalCompany.Integration.Porsche.Factories;
-using CarRentalCompany.Integration.Volvo.Factories;
+using CarRentalCompany.Integration.Integrators;
+using CarRentalCompany.Integration.Mercedes.Integrators;
+using CarRentalCompany.Integration.Porsche.Integrators;
+using CarRentalCompany.Integration.Volvo.Integrators;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

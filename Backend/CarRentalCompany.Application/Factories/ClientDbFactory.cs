@@ -13,8 +13,8 @@ namespace CarRentalCompany.Application.Factories
                 throw new EmptyInputValueException("name");
             }
 
-            return new Client
-                (Guid.NewGuid(),
+            return new Client(
+                Guid.NewGuid(),
                 name);
         }
     }
