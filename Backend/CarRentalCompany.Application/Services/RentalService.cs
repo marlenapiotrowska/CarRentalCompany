@@ -33,12 +33,12 @@ namespace CarRentalCompany.Application.Services
 
         public async Task Create(CreateRentalInput input)
         {
-            var clientExists = _clientRepository.GetOrDefault(input.ClientId)
+            var clientExists = await _clientRepository.GetOrDefault(input.ClientId)
                 ?? throw new InvalidProcedureException($"Client with id {input.ClientId} does not exists.");
-            var car = _carRepository.GetOrDefault(input.CarId) 
+            var car = await _carRepository.GetOrDefault(input.CarId) 
                 ?? throw new InvalidProcedureException($"Car with id {input.CarId} does not exist.");
 
-            var rentalNotEndedForCar = _rentalRepository.GetOrDefaultNotEndedForCarId(input.CarId);
+            var rentalNotEndedForCar = await _rentalRepository.GetOrDefaultNotEndedForCarId(input.CarId);
             if (rentalNotEndedForCar != null)
             {
                 throw new InvalidProcedureException($"There is another not ended rental for car with Id {input.CarId}");
